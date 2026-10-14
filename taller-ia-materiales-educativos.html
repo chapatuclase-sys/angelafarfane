@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller en vivo: Crea y mejora tus materiales educativos con IA — Angela Farfán</title>
+<meta name="description" content="Taller virtual en vivo con Angela Farfán. Aprende a usar inteligencia artificial con criterios pedagógicos y aplícala en SIQA.lat para crear, revisar y mejorar una actividad de aprendizaje y su rúbrica. Sábado 7 de noviembre de 2026, 6:00 a 8:00 p. m. (hora de Perú), por Google Meet.">
+<meta name="author" content="Angela Farfán">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Taller en vivo: Crea y mejora tus materiales educativos con IA">
+<meta property="og:description" content="Sábado 7 de noviembre de 2026 · 6:00 a 8:00 p. m. (hora de Perú) · En vivo por Google Meet. Precio promocional S/99 hasta el 31 de octubre.">
+<meta property="og:locale" content="es_PE">
+<meta property="og:image" content="og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og-image.jpg">
+<meta name="theme-color" content="#0A1230">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230A1230%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-weight=%27700%27 font-size=%2730%27 fill=%27%23fff%27%3EAF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ TOKENS (mismos del sitio principal) ═══════════ */
+:root{
+  --tinta:#0A1230;
+  --tinta-2:#131E48;
+  --azul:#1B5CF0;
+  --azul-hover:#0F3FB0;
+  --cielo:#93B4FF;
+  --papel:#F1F4FA;
+  --blanco:#FFFFFF;
+  --laton:#C9A227;
+  --jade:#0E9E6E;
+  --texto:#16204A;
+  --gris:#5C6B8F;
+  --linea:#DCE4F4;
+  --linea-oscura:rgba(147,180,255,.16);
+  --r-s:4px;
+  --r-m:10px;
+  --r-l:18px;
+  --sombra:0 1px 2px rgba(10,18,48,.05), 0 18px 44px -28px rgba(10,18,48,.45);
+  --sombra-alta:0 2px 4px rgba(10,18,48,.06), 0 32px 64px -30px rgba(10,18,48,.5);
+  --ancho:1180px;
+  --sans:"Instrument Sans", system-ui, -apple-system, sans-serif;
+  --serif:"Instrument Serif", Georgia, serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--texto);background:var(--blanco);line-height:1.6;font-size:17px;overflow-x:hidden}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+section[id],header[id]{scroll-margin-top:84px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::selection{background:var(--azul);color:#fff}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px;border-radius:var(--r-s)}
+.oscuro :focus-visible{outline-color:var(--cielo)}
+
+/* ═══════════ UTILIDADES ═══════════ */
+.env{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:24px}
+.seccion{padding:clamp(72px,9vw,120px) 0}
+.seccion--papel{background:var(--papel)}
+.oscuro{background:var(--tinta);color:#E9EEFB;position:relative;isolation:isolate}
+.oscuro::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--linea-oscura) 1px,transparent 1px),linear-gradient(90deg,var(--linea-oscura) 1px,transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 0%,transparent 78%);
+  opacity:.75;
+}
+.oscuro h2,.oscuro h3{color:#fff}
+.oscuro p{color:#B9C6E6}
+.rotulo{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gris);
+  display:inline-flex;align-items:flex-start;gap:10px;margin-bottom:18px;
+}
+.rotulo::before{content:"";width:7px;height:7px;background:var(--laton);flex:none;margin-top:5px}
+.oscuro .rotulo{color:var(--cielo)}
+h1,h2,h3,h4{line-height:1.12;letter-spacing:-.02em;font-weight:600}
+h2{font-size:clamp(30px,4.2vw,50px);margin-bottom:18px}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+h3{font-size:20px;line-height:1.28}
+.entrada{font-size:clamp(17px,1.7vw,19.5px);color:var(--gris);max-width:62ch;line-height:1.65}
+.oscuro .entrada{color:#AEBDE0}
+.cab{max-width:760px;margin-bottom:clamp(40px,5vw,60px)}
+.cab--centro{margin-inline:auto;text-align:center}
+.cab--centro .entrada{margin-inline:auto}
+
+/* ═══════════ BOTONES ═══════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 26px;border-radius:999px;font-weight:600;font-size:15.5px;
+  letter-spacing:-.01em;transition:transform .18s ease,background .18s ease,box-shadow .18s ease,border-color .18s;
+  border:1.5px solid transparent;white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--azul{background:var(--azul);color:#fff;box-shadow:0 10px 24px -12px rgba(27,92,240,.8)}
+.btn--azul:hover{background:var(--azul-hover)}
+.btn--linea{border-color:var(--linea);color:var(--texto);background:var(--blanco)}
+.btn--linea:hover{border-color:var(--azul);color:var(--azul)}
+.oscuro .btn--linea{border-color:rgba(147,180,255,.35);color:#fff;background:transparent}
+.oscuro .btn--linea:hover{border-color:var(--cielo);background:rgba(147,180,255,.08)}
+.btn--wa{background:#12A150;color:#fff;box-shadow:0 10px 24px -12px rgba(18,161,80,.85)}
+.btn--wa:hover{background:#0E8842}
+.btn--grande{padding:18px 34px;font-size:16.5px;letter-spacing:.02em}
+.btn svg{width:17px;height:17px;flex:none}
+
+/* ═══════════ NAV ═══════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,18,48,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(147,180,255,.14);
+  transition:background .3s,border-color .3s;
+}
+.nav.claro{background:rgba(255,255,255,.9);border-bottom-color:var(--linea)}
+.nav-in{display:flex;align-items:center;gap:20px;height:66px}
+.marca{display:flex;align-items:center;gap:11px;line-height:1;margin-right:auto}
+.marca-txt{display:flex;flex-direction:column;line-height:1}
+.marca b{font-size:17px;font-weight:700;letter-spacing:-.035em;color:#fff;transition:color .3s;white-space:nowrap}
+.marca-txt span{font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--cielo);margin-top:5px;transition:color .3s;white-space:nowrap}
+.nav.claro .marca b{color:var(--tinta)}
+.nav.claro .marca-txt span{color:var(--gris)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-size:14.5px;color:#C3CFEC;transition:color .2s;position:relative;padding:6px 0;white-space:nowrap}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--laton);transition:right .25s ease}
+.nav-links a:hover::after{right:0}
+.nav-links a:hover{color:#fff}
+.nav.claro .nav-links a{color:var(--gris)}
+.nav.claro .nav-links a:hover{color:var(--tinta)}
+.nav .btn{padding:10px 20px;font-size:14px}
+.hamb{display:none;width:42px;height:42px;align-items:center;justify-content:center;border-radius:var(--r-s)}
+.hamb span{display:block;width:20px;height:1.5px;background:#fff;position:relative}
+.hamb span::before,.hamb span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:#fff;transition:transform .25s}
+.hamb span::before{top:-6px}.hamb span::after{top:6px}
+.nav.claro .hamb span,.nav.claro .hamb span::before,.nav.claro .hamb span::after{background:var(--tinta)}
+
+/* ═══════════ HERO ═══════════ */
+.hero{padding:128px 0 88px;position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;width:640px;height:640px;right:-180px;top:-160px;z-index:-1;border-radius:50%;
+  background:radial-gradient(circle,rgba(27,92,240,.32) 0%,transparent 66%);pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(32px,5vw,68px);align-items:center}
+.etiqueta-vivo{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  border:1px solid rgba(147,180,255,.35);background:rgba(147,180,255,.08);border-radius:999px;padding:8px 16px;
+}
+.vivo-punto{width:8px;height:8px;border-radius:50%;background:#FF4D5E;box-shadow:0 0 0 0 rgba(255,77,94,.6);animation:latido 1.8s ease-out infinite}
+@keyframes latido{0%{box-shadow:0 0 0 0 rgba(255,77,94,.55)}70%{box-shadow:0 0 0 10px rgba(255,77,94,0)}100%{box-shadow:0 0 0 0 rgba(255,77,94,0)}}
+.hero h1{
+  font-size:clamp(34px,5vw,62px);font-weight:600;letter-spacing:-.035em;
+  line-height:1.04;color:#fff;margin-bottom:24px;max-width:16ch;
+}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--cielo);letter-spacing:-.015em}
+.hero .entrada{margin-bottom:28px;max-width:56ch}
+.guia{display:flex;align-items:center;gap:14px;margin-bottom:32px;max-width:52ch}
+.guia img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:2px solid var(--laton);flex:none}
+.guia p{font-size:15px;line-height:1.5;color:#C3CFEC}
+.guia b{color:#fff;font-weight:600}
+.datos{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.dato{
+  display:inline-flex;align-items:center;gap:9px;font-size:14px;color:#E4EAFA;
+  border:1px solid rgba(147,180,255,.24);background:rgba(255,255,255,.04);border-radius:var(--r-m);padding:10px 14px;
+}
+.dato svg{width:17px;height:17px;color:var(--laton);flex:none}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Tarjeta de inscripción */
+.ticket{
+  background:var(--blanco);color:var(--texto);border-radius:var(--r-l);
+  padding:clamp(26px,3vw,34px);box-shadow:0 40px 80px -40px rgba(0,0,0,.85);position:relative;
+}
+.ticket::after{
+  content:"";position:absolute;inset:16px -16px -16px 16px;
+  border:1px solid var(--laton);border-radius:var(--r-l);z-index:-1;opacity:.55;
+}
+.ticket-cab{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.ticket-tipo{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gris)}
+.sello{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:#8A6400;background:#FFF6E0;border:1px solid #E3C46A;border-radius:999px;padding:5px 11px;white-space:nowrap;
+}
+.sello--fin{color:var(--gris);background:var(--papel);border-color:var(--linea)}
+.precio-fila{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.precio-grande{font-family:var(--serif);font-size:clamp(58px,6vw,74px);line-height:1;color:var(--tinta);letter-spacing:-.02em}
+.precio-grande small{font-size:.5em;margin-right:4px;color:var(--gris)}
+.precio-antes{font-family:var(--mono);font-size:16px;color:var(--gris);text-decoration:line-through;text-decoration-color:#E04A5A}
+.precio-nota{font-size:14px;color:var(--gris);margin-bottom:20px;line-height:1.5}
+.precio-nota b{color:var(--texto);font-weight:600}
+.cuenta{border-top:1px dashed var(--linea);border-bottom:1px dashed var(--linea);padding:16px 0;margin-bottom:20px}
+.cuenta-tit{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--azul);margin-bottom:10px;display:block}
+.cuenta-num{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cuenta-num div{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r-m);text-align:center;padding:10px 4px 8px}
+.cuenta-num b{display:block;font-family:var(--mono);font-size:22px;font-weight:500;color:var(--tinta);line-height:1.1;font-variant-numeric:tabular-nums}
+.cuenta-num span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.ticket .btn{width:100%}
+.ticket-lista{list-style:none;display:grid;gap:9px;margin-top:20px}
+.ticket-lista li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--gris);line-height:1.45}
+.ticket-lista svg{width:17px;height:17px;flex:none;color:var(--jade);margin-top:1px}
+.ticket-cerrado{font-size:15px;color:var(--gris);margin-bottom:18px}
+.oscuro .ticket p{color:var(--gris)}
+
+/* ═══════════ TIRA DE DATOS ═══════════ */
+.tira{background:var(--tinta-2);border-top:1px solid rgba(147,180,255,.12);border-bottom:1px solid rgba(147,180,255,.12)}
+.tira-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.tira-item{padding:28px 22px;border-right:1px solid rgba(147,180,255,.14);display:flex;flex-direction:column;gap:6px}
+.tira-item:last-child{border-right:none}
+.tira-item b{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,30px);color:#fff;line-height:1.1}
+.tira-item span{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8FA2CC}
+
+/* ═══════════ QUÉ APRENDERÁS ═══════════ */
+.logros{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.logro{
+  background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);
+  padding:30px 24px 26px;display:flex;flex-direction:column;gap:18px;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s;
+}
+.logro:hover{transform:translateY(-5px);box-shadow:var(--sombra-alta);border-color:var(--azul)}
+.logro-ico{
+  width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:#EFF4FE;border:1px solid #C6D6F8;color:var(--azul);
+}
+.logro-ico svg{width:24px;height:24px}
+.logro-n{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--laton)}
+.logro p{font-size:16.5px;line-height:1.5;color:var(--texto);font-weight:500;letter-spacing:-.01em}
+
+/* ═══════════ METODOLOGÍA ═══════════ */
+.metodo{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
+.metodo-texto p{font-size:17.5px;line-height:1.72;color:var(--gris);margin-bottom:20px;max-width:56ch}
+.resultado{
+  margin-top:10px;border-left:2px solid var(--laton);padding:6px 0 6px 22px;
+  font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.34;color:var(--texto);letter-spacing:-.015em;
+}
+.ruta{list-style:none;position:relative}
+.ruta::before{content:"";position:absolute;left:23px;top:24px;bottom:24px;width:1.5px;background:linear-gradient(var(--azul),var(--laton))}
+.ruta li{display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;padding:0 0 18px}
+.ruta li:last-child{padding-bottom:0}
+.ruta-n{
+  width:48px;height:48px;border-radius:50%;background:var(--blanco);border:1.5px solid var(--azul);color:var(--azul);
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;position:relative;z-index:1;
+}
+.ruta li:last-child .ruta-n{background:var(--laton);border-color:var(--laton);color:#fff}
+.ruta-caja{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-m);padding:18px 20px;transition:border-color .22s,box-shadow .22s,transform .22s}
+.ruta-caja:hover{border-color:var(--azul);box-shadow:var(--sombra);transform:translateX(4px)}
+.ruta-caja span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--laton);display:block;margin-bottom:6px}
+.ruta-caja h3{font-size:17px;letter-spacing:-.02em}
+
+/* ═══════════ INCLUYE ═══════════ */
+.incluye{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
+.incluye-lista{list-style:none;display:grid;gap:12px}
+.incluye-lista li{
+  display:flex;align-items:center;gap:16px;font-size:17px;color:#EAF0FD;font-weight:500;letter-spacing:-.01em;
+  border:1px solid rgba(147,180,255,.18);border-radius:var(--r-m);padding:16px 18px;background:rgba(147,180,255,.045);
+  transition:border-color .22s,background .22s,transform .22s;
+}
+.incluye-lista li:hover{border-color:rgba(147,180,255,.4);background:rgba(147,180,255,.1);transform:translateX(4px)}
+.incluye-lista .check{width:30px;height:30px;border-radius:50%;background:rgba(14,158,110,.16);border:1px solid rgba(14,158,110,.5);color:#3FD39E;display:flex;align-items:center;justify-content:center;flex:none}
+.incluye-lista .check svg{width:15px;height:15px}
+.siqa{
+  border:1px solid rgba(147,180,255,.22);border-radius:var(--r-l);padding:clamp(26px,3.2vw,38px);
+  background:rgba(255,255,255,.035);
+}
+.siqa-marco{background:#fff;border-radius:var(--r-m);padding:22px 26px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;min-height:110px}
+.siqa-marco img{max-height:64px;width:auto}
+.siqa-rol{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--laton);margin-bottom:12px;display:block}
+.siqa p{font-size:16px;line-height:1.62;margin-bottom:24px}
+.siqa .btn{width:100%}
+
+/* ═══════════ PARA QUIÉN ═══════════ */
+.quien{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
+.caja{border:1px solid var(--linea);border-radius:var(--r-l);padding:clamp(28px,3.4vw,40px);background:var(--blanco);display:flex;flex-direction:column}
+.caja-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--laton);display:block;margin-bottom:16px}
+.caja h3{font-size:clamp(22px,2.4vw,27px);letter-spacing:-.03em;margin-bottom:14px}
+.caja > p{font-size:16.5px;color:var(--gris);line-height:1.62;margin-bottom:22px}
+.perfiles{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.perfiles li{font-size:14px;color:var(--texto);border:1px solid #C6D6F8;background:#EFF4FE;border-radius:999px;padding:8px 16px;font-weight:500}
+.caja--tinta{background:var(--tinta);border-color:var(--tinta);color:#E9EEFB}
+.caja--tinta h3{color:#fff}
+.caja--tinta > p{color:#AEBDE0}
+.requisitos{list-style:none;display:grid;gap:12px}
+.requisitos li{display:flex;align-items:center;gap:14px;font-size:16px;color:#EAF0FD;padding:14px 16px;border:1px solid rgba(147,180,255,.2);border-radius:var(--r-m);background:rgba(147,180,255,.05)}
+.requisitos svg{width:22px;height:22px;color:var(--cielo);flex:none}
+
+/* ═══════════ SOBRE MÍ ═══════════ */
+.sobre{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,5vw,80px);align-items:center}
+.sobre-foto{position:relative;max-width:440px}
+.sobre-foto img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 22%;border-radius:var(--r-l);box-shadow:var(--sombra-alta);filter:saturate(.92) contrast(1.04)}
+.sobre-foto::after{content:"";position:absolute;inset:16px -16px -16px 16px;border:1px solid var(--laton);border-radius:var(--r-l);z-index:-1;opacity:.55}
+.sobre-foto{isolation:isolate}
+.sobre-texto p{font-size:17.5px;line-height:1.72;color:var(--gris);margin-bottom:20px;max-width:60ch}
+.sobre-texto p.destacado{font-family:var(--serif);font-size:clamp(22px,2.4vw,27px);line-height:1.38;color:var(--texto);letter-spacing:-.015em}
+.firma{font-family:var(--serif);font-style:italic;font-size:27px;color:var(--tinta);margin:6px 0 26px;display:block}
+.firma small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-top:9px}
+.enlace{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--azul)}
+.enlace svg{width:15px;height:15px;transition:transform .22s}
+.enlace:hover svg{transform:translateX(5px)}
+
+/* ═══════════ INSCRIPCIÓN ═══════════ */
+.planes{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto 36px}
+.plan{
+  border:1px solid rgba(147,180,255,.24);border-radius:var(--r-l);padding:30px 28px;background:rgba(255,255,255,.035);
+  position:relative;transition:border-color .25s,background .25s,opacity .25s;
+}
+.plan.vigente{border-color:var(--laton);background:rgba(201,162,39,.08);box-shadow:0 30px 60px -36px rgba(201,162,39,.6)}
+.plan.pasado{opacity:.45}
+.plan-estado{
+  position:absolute;top:-12px;left:24px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--laton);color:var(--tinta);border-radius:999px;padding:5px 12px;font-weight:500;
+}
+.plan:not(.vigente) .plan-estado{background:var(--tinta-2);color:#8FA2CC;border:1px solid rgba(147,180,255,.24)}
+.plan-tipo{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--cielo);display:block;margin:6px 0 12px}
+.plan-precio{font-family:var(--serif);font-size:clamp(48px,5vw,62px);line-height:1;color:#fff;margin-bottom:12px}
+.plan-precio small{font-size:.5em;margin-right:4px;color:#AEBDE0}
+.plan p{font-size:15px;line-height:1.55}
+.plan.pasado .plan-precio{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(224,74,90,.8)}
+.cierre{text-align:center;max-width:720px;margin:0 auto}
+.cierre-fecha{
+  display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 16px;margin-bottom:28px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--laton);
+  border:1px solid rgba(201,162,39,.55);border-radius:999px;padding:10px 22px;
+}
+.cierre-fecha i{width:4px;height:4px;border-radius:50%;background:var(--laton);display:inline-block}
+.cierre .cuenta{border-color:rgba(147,180,255,.2);max-width:440px;margin:0 auto 28px}
+.cierre .cuenta-tit{color:var(--cielo)}
+.cierre .cuenta-num div{background:rgba(147,180,255,.07);border-color:rgba(147,180,255,.22)}
+.cierre .cuenta-num b{color:#fff}
+.cierre .cuenta-num span{color:#8FA2CC}
+.consulta{margin-top:48px;padding-top:36px;border-top:1px solid rgba(147,180,255,.16);display:flex;flex-direction:column;align-items:center;gap:16px}
+.consulta h3{font-size:22px;letter-spacing:-.025em}
+
+/* ═══════════ FOOTER ═══════════ */
+.pie{background:var(--tinta);border-top:1px solid rgba(147,180,255,.14);padding:44px 0}
+.pie-in{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:center}
+.pie b{font-size:16px;color:#fff;letter-spacing:-.03em;display:block}
+.pie span{font-family:var(--mono);font-size:11px;color:#8FA2CC;letter-spacing:.06em;display:block;margin-top:7px}
+.pie-legal{font-family:var(--mono);font-size:11px;color:#6F82AE;letter-spacing:.05em;text-align:right;line-height:1.9}
+.pie-legal a:hover{color:#fff}
+
+/* ═══════════ FLOTANTES ═══════════ */
+.flota{
+  position:fixed;right:20px;bottom:20px;z-index:90;
+  display:inline-flex;align-items:center;gap:10px;background:#12A150;color:#fff;
+  padding:14px 20px;border-radius:999px;font-weight:600;font-size:14.5px;
+  box-shadow:0 14px 34px -12px rgba(18,161,80,.75);transition:transform .2s,bottom .3s;
+}
+.flota:hover{transform:translateY(-3px)}
+.flota svg{width:19px;height:19px}
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:95;display:none;
+  background:rgba(10,18,48,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(147,180,255,.2);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .3s ease;
+}
+.barra.visible{transform:none}
+.barra-in{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:var(--ancho);margin:0 auto}
+.barra-precio{display:flex;flex-direction:column;line-height:1.15}
+.barra-precio b{font-family:var(--serif);font-weight:400;font-size:28px;color:#fff}
+.barra-etq{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--laton)}
+.barra .btn{padding:12px 20px;font-size:14.5px}
+
+/* ═══════════ REVELADO ═══════════ */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rev.vista{opacity:1;transform:none}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width:1020px){
+  .hero-grid,.metodo,.incluye,.sobre{grid-template-columns:1fr}
+  .ticket{max-width:520px}
+  .logros{grid-template-columns:1fr 1fr}
+  .tira-in{grid-template-columns:1fr 1fr}
+  .tira-item:nth-child(2){border-right:none}
+  .tira-item:nth-child(-n+2){border-bottom:1px solid rgba(147,180,255,.14)}
+  .sobre-foto{max-width:360px}
+  .nav-links{
+    position:fixed;inset:66px 0 auto;background:var(--tinta);flex-direction:column;
+    align-items:stretch;gap:0;padding:12px 24px 26px;border-bottom:1px solid rgba(147,180,255,.16);
+    transform:translateY(-130%);transition:transform .3s ease;
+  }
+  .nav-links.abierto{transform:none}
+  .nav-links a{padding:14px 0;border-bottom:1px solid rgba(147,180,255,.1);color:#E4EAFA}
+  .nav.claro .nav-links a{color:#E4EAFA}
+  .nav-links a::after{display:none}
+  .hamb{display:flex}
+  .marca b{font-size:15px}
+  .marca-txt span{font-size:8.5px;letter-spacing:.13em}
+  .nav-in{gap:12px}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .env{padding-inline:16px}
+  .hero{padding:104px 0 64px}
+  .nav .btn{display:none}
+  .logros,.quien,.planes{grid-template-columns:1fr}
+  .tira-item{padding:20px 14px}
+  .planes{gap:26px}
+  .ticket::after{inset:12px -8px -12px 12px}
+  .sobre-foto::after{inset:12px -10px -12px 12px}
+  .pie-legal{text-align:left}
+  .hero-cta .btn{width:100%}
+  .barra{display:block}
+  .flota{bottom:92px;padding:15px}
+  .flota span{display:none}
+  .pie{padding-bottom:110px}
+  .cuenta-num b{font-size:19px}
+}
+@media (max-width:380px){
+  .tira-in{grid-template-columns:1fr}
+  .tira-item{border-right:none;border-bottom:1px solid rgba(147,180,255,.14)}
+  .tira-item:last-child{border-bottom:none}
+  .btn--grande{padding:16px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .rev{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav" id="nav">
+  <div class="env nav-in">
+    <a href="index.html" class="marca">
+      <span class="marca-txt">
+        <b>Angela Farfán</b>
+        <span>Soluciones educativas</span>
+      </span>
+    </a>
+    <div class="nav-links" id="menu">
+      <a href="#aprenderas">Qué aprenderás</a>
+      <a href="#incluye">Qué incluye</a>
+      <a href="#para-quien">Para quién es</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="index.html#talleres">Otros talleres</a>
+    </div>
+    <a class="btn btn--azul" href="#inscripcion">Quiero inscribirme</a>
+    <button class="hamb" id="hamb" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<header class="hero oscuro" id="inicio">
+  <div class="env hero-grid">
+    <div>
+      <span class="etiqueta-vivo"><span class="vivo-punto"></span>Taller virtual en vivo</span>
+      <h1>Crea y mejora tus <em>materiales educativos</em> con IA</h1>
+      <p class="entrada">Aprende a usar inteligencia artificial con criterios pedagógicos y aplícala en SIQA.lat para crear, revisar y mejorar una actividad de aprendizaje y su rúbrica.</p>
+      <div class="guia">
+        <img src="img/angela-farfan.jpg" alt="Angela Farfán" width="52" height="52">
+        <p><b>Te acompañaré paso a paso.</b> Soy Angela Farfán, diseñadora instruccional y fundadora de SIQA.</p>
+      </div>
+      <div class="datos">
+        <span class="dato">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+          Sábado 7 de noviembre de 2026
+        </span>
+        <span class="dato">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          6:00 a 8:00 p. m. — hora de Perú
+        </span>
+        <span class="dato">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>
+          En vivo por Google Meet
+        </span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn--azul btn--grande js-inscribir" href="#inscripcion">QUIERO INSCRIBIRME
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--linea" href="#aprenderas">Ver qué aprenderás</a>
+      </div>
+    </div>
+
+    <aside class="ticket" aria-label="Precio e inscripción">
+      <div class="ticket-cab">
+        <span class="ticket-tipo">Tu inscripción</span>
+        <span class="sello" data-precio="sello">Precio promocional</span>
+      </div>
+      <div data-estado="abierto">
+        <div class="precio-fila">
+          <span class="precio-grande"><small>S/</small><span data-precio="actual">99</span></span>
+          <span class="precio-antes" data-precio="antes">S/120</span>
+        </div>
+        <p class="precio-nota" data-precio="nota"><b>Precio promocional S/99</b> hasta el 31 de octubre. Precio regular S/120 desde el 1 de noviembre.</p>
+        <div class="cuenta" data-cuenta>
+          <span class="cuenta-tit" data-cuenta-tit>La promoción termina en</span>
+          <div class="cuenta-num">
+            <div><b data-c="d">00</b><span>días</span></div>
+            <div><b data-c="h">00</b><span>horas</span></div>
+            <div><b data-c="m">00</b><span>min</span></div>
+            <div><b data-c="s">00</b><span>seg</span></div>
+          </div>
+        </div>
+        <a class="btn btn--azul btn--grande js-inscribir" href="#" target="_blank" rel="noopener">QUIERO INSCRIBIRME</a>
+      </div>
+      <div data-estado="cerrado" hidden>
+        <p class="ticket-cerrado">Las inscripciones para esta fecha ya cerraron.</p>
+        <a class="btn btn--wa js-consulta" href="#" target="_blank" rel="noopener">ESCRÍBEME POR WHATSAPP</a>
+      </div>
+      <ul class="ticket-lista">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Dos horas de formación virtual en vivo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tu cuenta en SIQA.lat y créditos para la práctica</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Presentación y materiales de apoyo</li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<!-- ══════════════ TIRA DE DATOS ══════════════ -->
+<section class="tira oscuro" aria-label="Datos del taller">
+  <div class="env tira-in">
+    <div class="tira-item"><b>2 horas</b><span>De formación en vivo</span></div>
+    <div class="tira-item"><b>Google Meet</b><span>100% virtual</span></div>
+    <div class="tira-item"><b>SIQA.lat</b><span>Herramienta de práctica</span></div>
+    <div class="tira-item"><b>1 borrador</b><span>Trabajado al finalizar</span></div>
+  </div>
+</section>
+
+<!-- ══════════════ QUÉ APRENDERÁS ══════════════ -->
+<section class="seccion" id="aprenderas">
+  <div class="env">
+    <div class="cab rev">
+      <p class="rotulo">Objetivos del taller</p>
+      <h2>Qué <em>aprenderás</em></h2>
+    </div>
+    <div class="logros">
+      <article class="logro rev">
+        <span class="logro-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+        <span class="logro-n">01</span>
+        <p>Dar instrucciones claras a la IA para elaborar materiales educativos.</p>
+      </article>
+      <article class="logro rev">
+        <span class="logro-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.3 11l9.4-4.8M7.3 13l9.4 4.8"/></svg></span>
+        <span class="logro-n">02</span>
+        <p>Conectar el resultado de aprendizaje, la actividad y la evaluación.</p>
+      </article>
+      <article class="logro rev">
+        <span class="logro-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-9.5 9.5H4.5v-7z"/><path d="M11.5 5.5l7 7"/></svg></span>
+        <span class="logro-n">03</span>
+        <p>Aplicar SIQA para crear, analizar y mejorar un material.</p>
+      </article>
+      <article class="logro rev">
+        <span class="logro-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M8 11l2 2 4-4M21 21l-5-5"/></svg></span>
+        <span class="logro-n">04</span>
+        <p>Revisar los resultados con criterio docente antes de utilizarlos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ METODOLOGÍA ══════════════ -->
+<section class="seccion seccion--papel" id="metodologia">
+  <div class="env metodo">
+    <div class="metodo-texto rev">
+      <p class="rotulo">Cómo trabajaremos</p>
+      <h2>Aprende y aplica <em>durante el taller</em></h2>
+      <p>Comenzaremos con fundamentos de IA para materiales educativos. Después, te mostraré cómo aplicarlos en SIQA y te acompañaré en una práctica para adaptar una actividad y su rúbrica a tu curso.</p>
+      <p class="resultado">Al finalizar, tendrás un borrador trabajado y criterios para seguir mejorándolo.</p>
+    </div>
+    <ol class="ruta rev">
+      <li><span class="ruta-n">01</span><div class="ruta-caja"><span>Fundamentos</span><h3>Fundamentos de IA para materiales educativos</h3></div></li>
+      <li><span class="ruta-n">02</span><div class="ruta-caja"><span>Aplicación</span><h3>Cómo aplicarlos en SIQA</h3></div></li>
+      <li><span class="ruta-n">03</span><div class="ruta-caja"><span>Práctica acompañada</span><h3>Adapta una actividad y su rúbrica a tu curso</h3></div></li>
+      <li><span class="ruta-n">04</span><div class="ruta-caja"><span>Resultado</span><h3>Un borrador trabajado y criterios para seguir mejorándolo</h3></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════ INCLUYE ══════════════ -->
+<section class="seccion oscuro" id="incluye">
+  <div class="env incluye">
+    <div class="rev">
+      <div class="cab" style="margin-bottom:32px">
+        <p class="rotulo">Qué incluye</p>
+        <h2>Tu inscripción <em>incluye</em></h2>
+      </div>
+      <ul class="incluye-lista">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Dos horas de formación virtual en vivo.</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Presentación y materiales de apoyo.</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Tu cuenta en SIQA.lat.</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Créditos para desarrollar la práctica.</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Espacio para preguntas durante la sesión.</li>
+      </ul>
+    </div>
+    <div class="siqa rev">
+      <div class="siqa-marco"><img src="img/siqa-logo.webp" alt="SIQA" width="520" height="186" loading="lazy"></div>
+      <span class="siqa-rol">Herramienta de práctica</span>
+      <p>Usaremos SIQA.lat como herramienta de práctica para crear, revisar y mejorar una actividad de aprendizaje y su rúbrica.</p>
+      <a class="btn btn--azul js-inscribir" href="#" target="_blank" rel="noopener">QUIERO INSCRIBIRME</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PARA QUIÉN ══════════════ -->
+<section class="seccion" id="para-quien">
+  <div class="env">
+    <div class="cab rev">
+      <p class="rotulo">Participantes</p>
+      <h2>Para quién <em>es</em></h2>
+    </div>
+    <div class="quien">
+      <div class="caja rev">
+        <span class="caja-tag">Perfil</span>
+        <h3>Para quienes desean incorporar IA en la preparación de sus materiales</h3>
+        <p>Para docentes de educación superior y técnica, diseñadores instruccionales y capacitadores que desean incorporar IA en la preparación de sus materiales.</p>
+        <ul class="perfiles">
+          <li>Docentes de educación superior y técnica</li>
+          <li>Diseñadores instruccionales</li>
+          <li>Capacitadores</li>
+        </ul>
+      </div>
+      <div class="caja caja--tinta rev">
+        <span class="caja-tag">Antes de empezar</span>
+        <h3>Necesitas</h3>
+        <ul class="requisitos">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Una laptop</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r="1"/></svg>Conexión a internet</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11H4z"/><path d="M14 4v6h6M8 14h8M8 17h5"/></svg>Un tema o resultado de aprendizaje de tu curso</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SOBRE MÍ ══════════════ -->
+<section class="seccion seccion--papel" id="sobre-mi">
+  <div class="env sobre">
+    <div class="sobre-foto rev">
+      <img src="img/angela-farfan.jpg" alt="Angela Farfán, diseñadora instruccional y fundadora de SIQA" width="880" height="880" loading="lazy">
+    </div>
+    <div class="sobre-texto rev">
+      <p class="rotulo">Sobre mí</p>
+      <h2>Angela <em>Farfán</em></h2>
+      <p class="destacado">Soy magíster en Educación con mención en E-learning, diseñadora instruccional y fundadora de SIQA.</p>
+      <p>Mi trabajo conecta el diseño de experiencias de aprendizaje con la inteligencia artificial aplicada a la educación.</p>
+      <p>En este taller, te guiaré para aplicar lo aprendido a una necesidad concreta de tu curso. Usaremos SIQA.lat como herramienta de práctica.</p>
+      <span class="firma">Angela Farfán
+        <small>Diseñadora instruccional · Fundadora de SIQA</small>
+      </span>
+      <a class="enlace" href="index.html#quien-soy">Conoce mi trayectoria
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ INSCRIPCIÓN ══════════════ -->
+<section class="seccion oscuro" id="inscripcion">
+  <div class="env">
+    <div class="cab cab--centro rev">
+      <p class="rotulo">Inscripciones</p>
+      <h2>Reserva tu <em>participación</em></h2>
+    </div>
+    <div class="planes rev">
+      <div class="plan" data-plan="promo">
+        <span class="plan-estado" data-plan-estado>Vigente</span>
+        <span class="plan-tipo">Precio promocional</span>
+        <div class="plan-precio"><small>S/</small>99</div>
+        <p>Hasta el 31 de octubre.</p>
+      </div>
+      <div class="plan" data-plan="regular">
+        <span class="plan-estado" data-plan-estado>Desde el 1 de noviembre</span>
+        <span class="plan-tipo">Precio regular</span>
+        <div class="plan-precio"><small>S/</small>120</div>
+        <p>Del 1 al 7 de noviembre, hasta el cierre de inscripciones.</p>
+      </div>
+    </div>
+    <div class="cierre rev">
+      <p class="cierre-fecha">Sábado 7 de noviembre de 2026 <i></i> 6:00 a 8:00 p. m. <i></i> Google Meet</p>
+      <div data-estado="abierto">
+        <div class="cuenta" data-cuenta>
+          <span class="cuenta-tit" data-cuenta-tit>La promoción termina en</span>
+          <div class="cuenta-num">
+            <div><b data-c="d">00</b><span>días</span></div>
+            <div><b data-c="h">00</b><span>horas</span></div>
+            <div><b data-c="m">00</b><span>min</span></div>
+            <div><b data-c="s">00</b><span>seg</span></div>
+          </div>
+        </div>
+        <a class="btn btn--azul btn--grande js-inscribir" href="#" target="_blank" rel="noopener">QUIERO INSCRIBIRME
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p data-estado="cerrado" hidden>Las inscripciones para esta fecha ya cerraron.</p>
+      <div class="consulta">
+        <h3>¿Tienes alguna consulta?</h3>
+        <a class="btn btn--wa js-consulta" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2m0 1.8a8.2 8.2 0 1 1-4.4 15.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 0 1 12 3.8"/></svg>
+          ESCRÍBEME POR WHATSAPP
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="env pie-in">
+    <div>
+      <b>Angela Farfán</b>
+      <span>Soluciones educativas por Angela Farfán · Lima, Perú</span>
+    </div>
+    <div class="pie-legal">
+      <a href="index.html">Volver a la página principal</a><br>
+      WhatsApp 953 867 652 · angelafarfae@gmail.com<br>
+      © 2026 Angela Farfán · Todos los derechos reservados
+    </div>
+  </div>
+</footer>
+
+<a class="flota js-consulta" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2m0 1.8a8.2 8.2 0 1 1-4.4 15.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 0 1 12 3.8"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<!-- Barra fija de inscripción (móvil) -->
+<div class="barra" id="barra" aria-hidden="true">
+  <div class="barra-in">
+    <div class="barra-precio"><b>S/<span data-precio="actual">99</span></b><span class="barra-etq" data-precio="barra">Precio promocional</span></div>
+    <a class="btn btn--azul js-inscribir" href="#" target="_blank" rel="noopener" tabindex="-1">QUIERO INSCRIBIRME</a>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Event",
+  "name":"Crea y mejora tus materiales educativos con IA",
+  "description":"Taller virtual en vivo. Aprende a usar inteligencia artificial con criterios pedagógicos y aplícala en SIQA.lat para crear, revisar y mejorar una actividad de aprendizaje y su rúbrica.",
+  "startDate":"2026-11-07T18:00:00-05:00",
+  "endDate":"2026-11-07T20:00:00-05:00",
+  "eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus":"https://schema.org/EventScheduled",
+  "location":{"@type":"VirtualLocation","name":"Google Meet"},
+  "inLanguage":"es",
+  "organizer":{"@type":"Person","name":"Angela Farfán"},
+  "performer":{"@type":"Person","name":"Angela Farfán"},
+  "offers":[
+    {"@type":"Offer","name":"Precio promocional","price":"99","priceCurrency":"PEN","validThrough":"2026-10-31T23:59:59-05:00"},
+    {"@type":"Offer","name":"Precio regular","price":"120","priceCurrency":"PEN","validFrom":"2026-11-01T00:00:00-05:00"}
+  ]
+}
+</script>
+
+<script>
+/* ─── WhatsApp ─── */
+const WA = "51953867652";
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const TALLER = "«Crea y mejora tus materiales educativos con IA»";
+document.querySelectorAll(".js-inscribir").forEach(a => {
+  if (a.getAttribute("href") === "#") a.href = wa(`Hola Angela, quiero inscribirme en el taller ${TALLER} del sábado 7 de noviembre.`);
+});
+document.querySelectorAll(".js-consulta").forEach(a => {
+  a.href = wa(`Hola Angela, tengo una consulta sobre el taller ${TALLER}.`);
+});
+
+/* ─── Precio y cuenta regresiva (hora de Perú, UTC-5) ─── */
+const FIN_PROMO = new Date("2026-11-01T00:00:00-05:00").getTime();
+const INICIO    = new Date("2026-11-07T18:00:00-05:00").getTime();
+const pon = (sel, txt) => document.querySelectorAll(sel).forEach(el => { el.textContent = txt; });
+let etapa = null;
+
+function fijarEtapa(e){
+  if (e === etapa) return;
+  etapa = e;
+  const promo = e === "promo";
+  document.querySelectorAll('[data-estado="abierto"]').forEach(el => el.hidden = e === "cerrado");
+  document.querySelectorAll('[data-estado="cerrado"]').forEach(el => el.hidden = e !== "cerrado");
+  pon('[data-precio="actual"]', promo ? "99" : "120");
+  pon('[data-precio="sello"]', promo ? "Precio promocional" : e === "regular" ? "Precio regular" : "Inscripciones cerradas");
+  pon('[data-precio="barra"]', promo ? "Precio promocional" : "Precio regular");
+  pon("[data-cuenta-tit]", promo ? "La promoción termina en" : "El taller empieza en");
+  document.querySelectorAll('[data-precio="antes"]').forEach(el => el.hidden = !promo);
+  document.querySelectorAll('[data-precio="sello"]').forEach(el => el.classList.toggle("sello--fin", e === "cerrado"));
+  document.querySelectorAll('[data-precio="nota"]').forEach(el => {
+    el.innerHTML = promo
+      ? "<b>Precio promocional S/99</b> hasta el 31 de octubre. Precio regular S/120 desde el 1 de noviembre."
+      : "<b>Precio regular S/120</b> del 1 al 7 de noviembre, hasta el cierre de inscripciones.";
+  });
+  const pPromo = document.querySelector('[data-plan="promo"]');
+  const pReg = document.querySelector('[data-plan="regular"]');
+  pPromo.classList.toggle("vigente", promo);
+  pPromo.classList.toggle("pasado", !promo);
+  pReg.classList.toggle("vigente", e === "regular");
+  pReg.classList.toggle("pasado", e === "cerrado");
+  pPromo.querySelector("[data-plan-estado]").textContent = promo ? "Vigente" : "Finalizado";
+  pReg.querySelector("[data-plan-estado]").textContent = e === "regular" ? "Vigente" : e === "cerrado" ? "Finalizado" : "Desde el 1 de noviembre";
+  if (e === "cerrado") document.getElementById("barra").remove();
+}
+
+const dos = n => String(n).padStart(2, "0");
+function tic(){
+  const ahora = Date.now();
+  const e = ahora < FIN_PROMO ? "promo" : ahora < INICIO ? "regular" : "cerrado";
+  fijarEtapa(e);
+  if (e === "cerrado") return;
+  const falta = Math.max(0, (e === "promo" ? FIN_PROMO : INICIO) - ahora);
+  const s = Math.floor(falta / 1000);
+  pon('[data-c="d"]', dos(Math.floor(s / 86400)));
+  pon('[data-c="h"]', dos(Math.floor(s % 86400 / 3600)));
+  pon('[data-c="m"]', dos(Math.floor(s % 3600 / 60)));
+  pon('[data-c="s"]', dos(s % 60));
+}
+tic();
+setInterval(tic, 1000);
+
+/* ─── Nav: color según sección ─── */
+const nav = document.getElementById("nav");
+const oscuras = [...document.querySelectorAll(".oscuro, .pie")];
+function pintarNav(){
+  const y = 40;
+  nav.classList.toggle("claro", !oscuras.some(s => {
+    const r = s.getBoundingClientRect();
+    return r.top <= y && r.bottom >= y;
+  }));
+}
+
+/* ─── Barra fija móvil: aparece al pasar el hero y se oculta en la sección de inscripción ─── */
+const hero = document.getElementById("inicio");
+const insc = document.getElementById("inscripcion");
+function pintarBarra(){
+  const barra = document.getElementById("barra");
+  if (!barra) return;
+  const pasoHero = hero.getBoundingClientRect().bottom < 0;
+  const r = insc.getBoundingClientRect();
+  const enInsc = r.top < innerHeight && r.bottom > 0;
+  const ver = pasoHero && !enInsc;
+  barra.classList.toggle("visible", ver);
+  barra.setAttribute("aria-hidden", String(!ver));
+  barra.querySelector("a").tabIndex = ver ? 0 : -1;
+}
+function alDesplazar(){ pintarNav(); pintarBarra(); }
+addEventListener("scroll", alDesplazar, {passive:true});
+addEventListener("resize", alDesplazar);
+alDesplazar();
+
+/* ─── Menú móvil ─── */
+const hamb = document.getElementById("hamb");
+const menu = document.getElementById("menu");
+hamb.addEventListener("click", () => {
+  const abierto = menu.classList.toggle("abierto");
+  hamb.setAttribute("aria-expanded", abierto);
+});
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  menu.classList.remove("abierto");
+  hamb.setAttribute("aria-expanded", "false");
+}));
+
+/* ─── Revelado al hacer scroll ─── */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("vista"); io.unobserve(e.target); }
+}), {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".rev").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
