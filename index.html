@@ -788,7 +788,7 @@ h3{font-size:20px;line-height:1.28}
 .rsv-fh{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(20px,3vw,36px)}
 .rsv-fh--solo{grid-template-columns:minmax(0,420px)}
 .rsv-cal-cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.rsv-mes{font-weight:600;font-size:16px;color:var(--tinta)}
+.rsv-mes{font-weight:600;font-size:16px;text-transform:capitalize;color:var(--tinta)}
 .rsv-nav{width:36px;height:36px;border-radius:50%;border:1px solid var(--linea);display:grid;place-items:center;color:var(--tinta);transition:border-color .2s,background .2s}
 .rsv-nav:hover:not(:disabled){border-color:var(--azul);color:var(--azul)}
 .rsv-nav:disabled{opacity:.35;cursor:not-allowed}
@@ -815,10 +815,12 @@ h3{font-size:20px;line-height:1.28}
 .rsv-estado a{color:var(--azul);font-weight:600;text-decoration:underline}
 .rsv-skel{height:46px;border-radius:999px;background:linear-gradient(90deg,var(--papel),#E6ECF8,var(--papel));background-size:200% 100%;animation:rsvSk 1.2s linear infinite}
 @keyframes rsvSk{to{background-position:-200% 0}}
+.rsv-gcal[hidden],.rsv-fh[hidden],.rsv-tz[hidden]{display:none}
+.rsv-gcal iframe{display:block;width:100%;height:640px;border:0;border-radius:var(--r-m);background:var(--blanco)}
 .rsv-tz{margin-top:16px;font:500 11px var(--mono);letter-spacing:.06em;color:var(--gris)}
 
-.rsv-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.rsv-campo{display:grid;gap:7px;min-width:0}
+.rsv-form{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;align-items:start}
+.rsv-campo{display:grid;gap:7px;min-width:0;align-content:start}
 .rsv-campo--full{grid-column:1/-1}
 .rsv-campo[hidden]{display:none}
 .rsv-campo label{font-size:13.5px;font-weight:600;color:var(--tinta)}
@@ -845,21 +847,13 @@ h3{font-size:20px;line-height:1.28}
 .rsv-aviso a{color:var(--cielo);font-weight:600;text-decoration:underline}
 .rsv-priv{font-size:12px;color:#8FA2CC;text-align:center}
 
-.rsv-ok{display:grid;gap:18px;justify-items:start;max-width:620px;margin-inline:auto;text-align:left;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:clamp(24px,4vw,40px);box-shadow:var(--sombra-alta)}
-.rsv-ok[hidden]{display:none}
-.rsv-ok .rsv-chk{width:54px;height:54px;border-radius:50%;background:rgba(14,158,110,.12);color:var(--jade);display:grid;place-items:center}
-.rsv-ok .rsv-chk svg{width:28px;height:28px}
-.rsv-ok h3{font-size:clamp(24px,3vw,30px)}
-.rsv-ok p{color:var(--gris);line-height:1.65}
-.rsv-ok-cuando{font-weight:600;color:var(--tinta)}
-.rsv-ok .acc{display:flex;gap:12px;flex-wrap:wrap}
-.rsv.hecho{display:none}
 
 @media (max-width:1020px){
   .rsv{grid-template-columns:1fr}
   .rsv-res{position:static}
 }
 @media (max-width:720px){
+  .rsv-gcal iframe{height:720px}
   .rsv-fh{grid-template-columns:1fr}
   .rsv-form{grid-template-columns:1fr}
   .rsv-tipo{padding:16px;gap:12px}
@@ -867,6 +861,19 @@ h3{font-size:20px;line-height:1.28}
   .rsv-res{padding:22px}
 }
 @media (prefers-reduced-motion:reduce){.rsv-skel{animation:none}.rsv-tipo,.rsv-radio::after{transition:none}}
+
+/* ═══════════ MENÚ: orden de lectura, sección activa y ajuste en pantallas medianas ═══════════ */
+.nav-links a.activo{color:#fff}
+.nav-links a.activo::after{right:0}
+.nav.claro .nav-links a.activo{color:var(--tinta)}
+@media (min-width:1021px) and (max-width:1260px){
+  .nav-in{gap:14px}
+  .nav-links{gap:13px}
+  .nav-links a{font-size:13.5px}
+  .marca-txt span{display:none}
+  .nav .btn{padding:9px 16px;font-size:13.5px}
+}
+@media (max-width:1020px){.nav-links a.activo{color:#fff}}
 </style>
 </head>
 <body>
@@ -881,8 +888,8 @@ h3{font-size:20px;line-height:1.28}
       </span>
     </a>
     <div class="nav-links" id="menu">
-      <a href="#servicios">Servicios</a>
       <a href="#talleres">Talleres</a>
+      <a href="#servicios">Servicios</a>
       <a href="#trabajo">Trabajo</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#quien-soy">Quién soy</a>
@@ -1208,13 +1215,18 @@ h3{font-size:20px;line-height:1.28}
 
         <!-- 2 · FECHA Y HORA -->
         <fieldset class="rsv-paso" id="rsv-p2">
-          <legend class="rsv-leg"><span class="rsv-num">2</span><span id="rsv-p2t" data-r="p2_gratis">Elige fecha y horario</span></legend>
+          <legend class="rsv-leg"><span class="rsv-num">2</span><span id="rsv-p2t" data-r="p2_gratis">Elige tu horario</span></legend>
           <div class="rsv-card">
             <div class="rsv-serv" id="rsv-serv" hidden>
               <div class="rsv-campo">
                 <label for="rsv-servicio" data-r="l_servicio">Servicio de interés</label>
                 <select id="rsv-servicio"></select>
               </div>
+            </div>
+            <div class="rsv-gcal" id="rsv-gcal">
+              <!-- Google Calendar Appointment Scheduling begin -->
+              <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0LhkpQPav7inSb1wv-7_H3gtjml1NjCBxBV8wvAnJMo6oEZInuSBRibUcfcDUld8A1QjUUkRzs?gv=true" title="Google Calendar" style="border: 0" width="100%" height="600" frameborder="0" loading="lazy"></iframe>
+              <!-- end Google Calendar Appointment Scheduling -->
             </div>
             <div class="rsv-fh" id="rsv-fh">
               <div>
@@ -1237,18 +1249,38 @@ h3{font-size:20px;line-height:1.28}
         </fieldset>
 
         <!-- 3 · DATOS -->
-        <fieldset class="rsv-paso">
+        <fieldset class="rsv-paso" id="rsv-p3">
           <legend class="rsv-leg"><span class="rsv-num">3</span><span data-r="p3">Tus datos</span></legend>
           <div class="rsv-card">
             <form class="rsv-form" id="rsv-form" novalidate autocomplete="on">
-              <div class="rsv-campo" data-tipos="gratis docente instit">
-                <label for="rsv-nombre" data-r="l_nombre">Nombre y apellido</label>
-                <input id="rsv-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" data-req>
+              <div class="rsv-campo" data-tipos="docente instit">
+                <label for="rsv-nombre" data-r="l_nombre">Nombre</label>
+                <input id="rsv-nombre" name="nombre" type="text" autocomplete="given-name" maxlength="80" data-req>
                 <span class="rsv-err" aria-live="polite"></span>
               </div>
-              <div class="rsv-campo" data-tipos="gratis">
+              <div class="rsv-campo" data-tipos="docente instit">
+                <label for="rsv-apellido" data-r="l_apellido">Apellido</label>
+                <input id="rsv-apellido" name="apellido" type="text" autocomplete="family-name" maxlength="80" data-req>
+                <span class="rsv-err" aria-live="polite"></span>
+              </div>
+              <div class="rsv-campo" data-tipos="docente instit">
                 <label for="rsv-email" data-r="l_email">Correo electrónico</label>
-                <input id="rsv-email" name="email" type="email" autocomplete="email" maxlength="120" inputmode="email" data-req data-email>
+                <input id="rsv-email" name="email" type="email" autocomplete="email" maxlength="120" inputmode="email" data-email data-req>
+                <span class="rsv-err" aria-live="polite"></span>
+              </div>
+              <div class="rsv-campo" data-tipos="docente instit">
+                <label for="rsv-cel" data-r="l_cel">Celular</label>
+                <input id="rsv-cel" name="cel" type="tel" autocomplete="tel" maxlength="25" inputmode="tel" data-tel data-req>
+                <span class="rsv-err" aria-live="polite"></span>
+              </div>
+              <div class="rsv-campo" data-tipos="docente instit">
+                <label for="rsv-cargo" data-r="l_cargo">Cargo</label>
+                <input id="rsv-cargo" name="cargo" type="text" autocomplete="organization-title" maxlength="80" data-req>
+                <span class="rsv-err" aria-live="polite"></span>
+              </div>
+              <div class="rsv-campo" data-tipos="docente">
+                <label for="rsv-empresa" data-r="l_empresa">Empresa</label>
+                <input id="rsv-empresa" name="empresa" type="text" autocomplete="organization" maxlength="100" data-req>
                 <span class="rsv-err" aria-live="polite"></span>
               </div>
               <div class="rsv-campo" data-tipos="instit">
@@ -1260,8 +1292,8 @@ h3{font-size:20px;line-height:1.28}
                 <label for="rsv-tipoorg" data-r="l_tipoorg">Tipo de organización</label>
                 <select id="rsv-tipoorg" name="tipoorg"></select>
               </div>
-              <div class="rsv-campo rsv-campo--full" data-tipos="gratis docente">
-                <label for="rsv-motivo" id="rsv-motivo-l" data-r="l_motivo_gratis">¿Sobre qué quieres conversar?</label>
+              <div class="rsv-campo rsv-campo--full" data-tipos="docente">
+                <label for="rsv-motivo" id="rsv-motivo-l" data-r="l_motivo_docente">Motivo de la consulta</label>
                 <textarea id="rsv-motivo" name="motivo" maxlength="600" data-req></textarea>
                 <span class="rsv-err" aria-live="polite"></span>
               </div>
@@ -1270,7 +1302,6 @@ h3{font-size:20px;line-height:1.28}
                 <textarea id="rsv-necesidad" name="necesidad" maxlength="800" data-req></textarea>
                 <span class="rsv-err" aria-live="polite"></span>
               </div>
-              <div class="rsv-trampa" aria-hidden="true"><label>Website <input type="text" id="rsv-web" tabindex="-1" autocomplete="off"></label></div>
             </form>
           </div>
         </fieldset>
@@ -1287,17 +1318,6 @@ h3{font-size:20px;line-height:1.28}
       </aside>
     </div>
 
-    <!-- CONFIRMACIÓN -->
-    <div class="rsv-ok" id="rsv-ok" role="status" hidden>
-      <span class="rsv-chk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-      <h3 data-r="ok_t">¡Reunión confirmada!</h3>
-      <p class="rsv-ok-cuando" id="rsv-ok-cuando"></p>
-      <p id="rsv-ok-p"></p>
-      <div class="acc">
-        <a class="btn btn--azul" id="rsv-ok-meet" href="#" target="_blank" rel="noopener" hidden data-r="ok_meet">Abrir enlace de Google Meet</a>
-        <button type="button" class="btn btn--linea" id="rsv-ok-volver" data-r="ok_volver">Volver</button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1717,8 +1737,6 @@ h3{font-size:20px;line-height:1.28}
       <a href="https://www.facebook.com/arfe2190/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.threads.net/@angelafarfan90" target="_blank" rel="noopener">Threads</a>
       <a href="https://twitter.com/angelafarfan90" target="_blank" rel="noopener">X</a>
-      <a href="https://beacons.ai/angelafarfane" target="_blank" rel="noopener">Beacons</a>
-      <a href="https://www.wattpad.com/user/angelafarfane" target="_blank" rel="noopener">Wattpad</a>
     </div>
   </div>
 </section>
@@ -2218,16 +2236,16 @@ reiniciarBot();
   const root = document.getElementById("reservas");
   if (!root) return;
   const TZ = "America/Lima";               /* UTC−5, sin horario de verano */
-  const API = "/api";                      /* funciones serverless de Vercel (carpeta /api) */
+  const GCAL_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0LhkpQPav7inSb1wv-7_H3gtjml1NjCBxBV8wvAnJMo6oEZInuSBRibUcfcDUld8A1QjUUkRzs?gv=true";
   const $ = (s, r = root) => r.querySelector(s);
   const $$ = (s, r = root) => [...r.querySelectorAll(s)];
 
   const RS = {
     es:{
       rotulo:"Reservas", h2a:"Agendemos un espacio para", h2b:"conversar",
-      entrada:"Elige cómo quieres que trabajemos juntos: una conversación inicial gratuita o una asesoría para tu caso. Todos los horarios se muestran en hora de Lima (UTC−5).",
+      entrada:"Elige cómo quieres que trabajemos juntos: una conversación inicial gratuita o una asesoría para tu caso. Los horarios de las asesorías se muestran en hora de Lima (UTC−5).",
       p1:"Elige el tipo de reunión",
-      p2_gratis:"Elige fecha y horario", p2_docente:"Elige servicio, fecha y horario de preferencia", p2_instit:"Elige una fecha de preferencia",
+      p2_gratis:"Elige tu horario", p2_docente:"Elige servicio, fecha y horario de preferencia", p2_instit:"Elige una fecha de preferencia",
       t_gratis_t:"Conversemos sobre tu proyecto", t_gratis_d:"Reunión exploratoria gratuita de 20 minutos por Google Meet, para conocernos, conversar sobre tus necesidades y explorar posibilidades de colaboración.", t_gratis_b:"Gratis · 20 min · Google Meet",
       t_docente_t:"Asesoría o consultoría personalizada", t_docente_d:"Servicio de pago para docentes y profesionales. Eliges el servicio y tu horario de preferencia; coordinamos alcance, precio y pago por WhatsApp.", t_docente_b:"Servicio de pago · se coordina por WhatsApp",
       t_instit_t:"Asesoría o consultoría institucional", t_instit_d:"Servicio de pago para universidades, institutos, centros educativos, empresas y organizaciones. Cuéntame tu necesidad y coordinamos alcance, cotización y condiciones.", t_instit_b:"Cotización a medida · por WhatsApp",
@@ -2235,49 +2253,42 @@ reiniciarBot();
       serv:["Asesoría puntual","Mentoría uno a uno","Taller para docentes","Ruta de formación en IA para docentes","Otro o aún no lo sé"],
       mes_ant:"Mes anterior", mes_sig:"Mes siguiente",
       dias:["L","M","X","J","V","S","D"],
-      h_gratis:"Horarios disponibles", h_docente:"Horario de preferencia",
-      hint_gratis:"Disponibilidad real de mi calendario. Duración: 20 minutos.",
+      h_docente:"Horario de preferencia",
       hint_docente:"Son horarios de preferencia, no disponibilidad confirmada. Se confirman cuando verifique tu pago.",
-      sin_fecha:"Elige un día para ver los horarios.", cargando:"Consultando disponibilidad…",
-      sin_dia:"No hay horarios disponibles ese día. Prueba con otro.", sin_mes:"No hay horarios disponibles este mes. Prueba con el siguiente.",
-      err_disp:"No pude consultar la disponibilidad en este momento.", wa_alt:"Escríbeme por WhatsApp",
-      flex:"Cualquier horario", tu_hora:"tu hora",
+      sin_fecha:"Elige un día para ver los horarios.",
+      flex:"Cualquier horario",
       tz_lima:"Horarios en hora de Lima (UTC−5).", tz_tuya:"Tu zona horaria: {z}.",
-      p3:"Tus datos", l_nombre:"Nombre y apellido", l_email:"Correo electrónico",
-      l_motivo_gratis:"¿Sobre qué quieres conversar?", l_motivo_docente:"Motivo de la consulta",
+      p3:"Tus datos", l_nombre:"Nombre", l_apellido:"Apellido", l_email:"Correo electrónico", l_cel:"Celular", l_cargo:"Cargo", l_empresa:"Empresa",
+      l_motivo_docente:"Motivo de la consulta",
       l_org:"Institución u organización", l_tipoorg:"Tipo de organización",
       tipoorg:["Universidad","Instituto","Centro educativo","Empresa","Otra organización"],
       l_necesidad:"¿Qué necesita tu institución?",
-      req:"Completa este campo.", mail:"Ingresa un correo válido.",
+      req:"Completa este campo.", mail:"Ingresa un correo válido.", tel:"Ingresa un número de celular válido.",
       res_t:"Resumen de tu reunión",
       r_tipo:"Tipo", r_serv:"Servicio", r_dur:"Duración", r_mod:"Modalidad", r_fecha:"Fecha", r_hora:"Hora", r_precio:"Precio",
       r_tipo_gratis:"Reunión exploratoria", r_tipo_docente:"Asesoría personalizada", r_tipo_instit:"Consultoría institucional",
       v_dur_gratis:"20 minutos", v_dur_pago:"A coordinar", v_mod_gratis:"Google Meet", v_mod_pago:"Se define por WhatsApp",
       v_precio_gratis:"Gratis", v_precio_pago:"Se coordina por WhatsApp", pend:"Por elegir",
-      nota_gratis:"Recibirás la invitación de Google Calendar con el enlace de Meet en tu correo. Esta reunión es solo para conocernos y explorar una posible colaboración.",
+      nota_gratis:"Elige tu horario en el calendario y completa tus datos allí. Recibirás la confirmación de Google Calendar con el enlace de Meet en tu correo. Esta reunión es solo para conocernos y explorar una posible colaboración.",
       nota_docente:"Esto es una solicitud, no una reserva. Por WhatsApp coordinamos alcance, precio y pago (Yape o transferencia). La reunión se confirma cuando verifique tu pago.",
       nota_instit:"Esto es una solicitud, no una reserva. Por WhatsApp coordinamos alcance, duración, cotización y condiciones de pago.",
-      cta_gratis:"Confirmar reunión gratuita", cta_docente:"Solicitar horario y coordinar pago", cta_instit:"Coordinar consultoría por WhatsApp", cta_cargando:"Reservando…",
-      priv_gratis:"Usaré tu nombre y correo solo para coordinar esta reunión.", priv_pago:"No se confirma ni se bloquea ningún horario hasta verificar el pago.",
+      cta_gratis:"Abrir el calendario en una pestaña nueva", cta_docente:"Solicitar horario y coordinar pago", cta_instit:"Coordinar consultoría por WhatsApp",
+      priv_gratis:"Los horarios se muestran en tu zona horaria.", priv_pago:"No se confirma ni se bloquea ningún horario hasta verificar el pago.",
       falta_hora:"Elige un horario para continuar.", falta_fecha:"Elige una fecha para continuar.", falta_campos:"Revisa los campos marcados.",
       wa_abierto:"Se abrió WhatsApp con los datos de tu solicitud. Envía el mensaje para continuar.",
-      err_ocupado:"Ese horario acaba de ser reservado por otra persona. Elige otro, por favor.",
-      err_gen:"No se pudo completar la reserva. Inténtalo de nuevo o escríbeme por WhatsApp.",
-      ok_t:"¡Reunión confirmada!", ok_p:"Te enviamos la invitación de Google Calendar a {email}. Si no la ves, revisa tu carpeta de spam.", ok_p_meet:"El enlace de Google Meet está en la invitación que te enviamos a {email}.", ok_meet:"Abrir enlace de Google Meet", ok_volver:"Volver",
-      /* WhatsApp */
       m_hola_docente:"Hola Angela, quiero solicitar una asesoría o consultoría personalizada.",
       m_hola_instit:"Hola Angela, quiero coordinar una consultoría institucional.",
       m_serv:"Servicio", m_fecha:"Fecha preferida", m_hora:"Horario preferido", m_hora_local:"en mi zona", m_nombre:"Nombre", m_motivo:"Motivo de la consulta",
-      m_org:"Institución", m_tipoorg:"Tipo de organización", m_nec:"Necesidad", m_contacto:"Contacto", m_tz:"Mi zona horaria",
+      m_org:"Institución", m_tipoorg:"Tipo de organización", m_nec:"Necesidad", m_contacto:"Contacto", m_correo:"Correo", m_cel:"Celular", m_cargo:"Cargo", m_empresa:"Empresa", m_tz:"Mi zona horaria",
       m_cierre_docente:"Quedo a la espera de tu respuesta para coordinar el alcance, el precio y el pago (Yape o transferencia).",
       m_cierre_instit:"Quedo a la espera de tu respuesta para coordinar el alcance, la duración, la cotización y las condiciones de pago.",
       flexm:"Cualquier horario"
     },
     en:{
       rotulo:"Booking", h2a:"Let's set aside time to", h2b:"talk",
-      entrada:"Choose how you'd like us to work together: a free introductory conversation or a consulting session for your case. All times are shown in Lima time (UTC−5).",
+      entrada:"Choose how you'd like us to work together: a free introductory conversation or a consulting session for your case. Times for consulting sessions are shown in Lima time (UTC−5).",
       p1:"Choose the type of meeting",
-      p2_gratis:"Choose a date and time", p2_docente:"Choose a service, preferred date and time", p2_instit:"Choose a preferred date",
+      p2_gratis:"Choose your time", p2_docente:"Choose a service, preferred date and time", p2_instit:"Choose a preferred date",
       t_gratis_t:"Let's talk about your project", t_gratis_d:"A free 20-minute exploratory meeting on Google Meet to get to know each other, talk about your needs and explore ways to collaborate.", t_gratis_b:"Free · 20 min · Google Meet",
       t_docente_t:"Personalized advisory or consulting", t_docente_d:"Paid service for teachers and professionals. You choose the service and your preferred time; we agree on scope, price and payment over WhatsApp.", t_docente_b:"Paid service · arranged on WhatsApp",
       t_instit_t:"Institutional advisory or consulting", t_instit_d:"Paid service for universities, institutes, schools, companies and organizations. Tell me what you need and we'll agree on scope, quote and terms.", t_instit_b:"Custom quote · on WhatsApp",
@@ -2285,59 +2296,51 @@ reiniciarBot();
       serv:["One-off advisory session","One-to-one mentoring","Workshop for teachers","AI training path for teachers","Other / not sure yet"],
       mes_ant:"Previous month", mes_sig:"Next month",
       dias:["M","T","W","T","F","S","S"],
-      h_gratis:"Available times", h_docente:"Preferred time",
-      hint_gratis:"Real availability from my calendar. Duration: 20 minutes.",
+      h_docente:"Preferred time",
       hint_docente:"These are preferred times, not confirmed availability. They are confirmed once I verify your payment.",
-      sin_fecha:"Pick a day to see the times.", cargando:"Checking availability…",
-      sin_dia:"No times available that day. Try another one.", sin_mes:"No times available this month. Try the next one.",
-      err_disp:"I couldn't check availability right now.", wa_alt:"Message me on WhatsApp",
-      flex:"Any time", tu_hora:"your time",
+      sin_fecha:"Pick a day to see the times.",
+      flex:"Any time",
       tz_lima:"Times shown in Lima time (UTC−5).", tz_tuya:"Your time zone: {z}.",
-      p3:"Your details", l_nombre:"Full name", l_email:"Email address",
-      l_motivo_gratis:"What would you like to talk about?", l_motivo_docente:"Reason for the consultation",
+      p3:"Your details", l_nombre:"First name", l_apellido:"Last name", l_email:"Email address", l_cel:"Mobile number", l_cargo:"Job title", l_empresa:"Company",
+      l_motivo_docente:"Reason for the consultation",
       l_org:"Institution or organization", l_tipoorg:"Type of organization",
       tipoorg:["University","Institute","School or training center","Company","Other organization"],
       l_necesidad:"What does your institution need?",
-      req:"Please fill in this field.", mail:"Enter a valid email address.",
+      req:"Please fill in this field.", mail:"Enter a valid email address.", tel:"Enter a valid mobile number.",
       res_t:"Your meeting summary",
       r_tipo:"Type", r_serv:"Service", r_dur:"Duration", r_mod:"Format", r_fecha:"Date", r_hora:"Time", r_precio:"Price",
       r_tipo_gratis:"Exploratory meeting", r_tipo_docente:"Personalized advisory", r_tipo_instit:"Institutional consulting",
       v_dur_gratis:"20 minutes", v_dur_pago:"To be agreed", v_mod_gratis:"Google Meet", v_mod_pago:"Defined on WhatsApp",
       v_precio_gratis:"Free", v_precio_pago:"Agreed on WhatsApp", pend:"To choose",
-      nota_gratis:"You'll get a Google Calendar invitation with the Meet link by email. This meeting is only to get to know each other and explore a possible collaboration.",
+      nota_gratis:"Pick your time in the calendar and fill in your details there. You'll get the Google Calendar confirmation with the Meet link by email. This meeting is only to get to know each other and explore a possible collaboration.",
       nota_docente:"This is a request, not a booking. On WhatsApp we agree on scope, price and payment (Yape or bank transfer). The meeting is confirmed once I verify your payment.",
       nota_instit:"This is a request, not a booking. On WhatsApp we agree on scope, duration, quote and payment terms.",
-      cta_gratis:"Confirm free meeting", cta_docente:"Request a time and arrange payment", cta_instit:"Arrange consulting on WhatsApp", cta_cargando:"Booking…",
-      priv_gratis:"I'll use your name and email only to arrange this meeting.", priv_pago:"No time slot is confirmed or blocked until payment is verified.",
+      cta_gratis:"Open the calendar in a new tab", cta_docente:"Request a time and arrange payment", cta_instit:"Arrange consulting on WhatsApp",
+      priv_gratis:"Times are shown in your time zone.", priv_pago:"No time slot is confirmed or blocked until payment is verified.",
       falta_hora:"Pick a time to continue.", falta_fecha:"Pick a date to continue.", falta_campos:"Please check the highlighted fields.",
       wa_abierto:"WhatsApp opened with your request details. Send the message to continue.",
-      err_ocupado:"That time slot was just booked by someone else. Please choose another one.",
-      err_gen:"The booking couldn't be completed. Please try again or message me on WhatsApp.",
-      ok_t:"Meeting confirmed!", ok_p:"We sent the Google Calendar invitation to {email}. If you don't see it, check your spam folder.", ok_p_meet:"The Google Meet link is in the invitation we sent to {email}.", ok_meet:"Open Google Meet link", ok_volver:"Back",
       m_hola_docente:"Hi Angela, I'd like to request a personalized advisory or consulting session.",
       m_hola_instit:"Hi Angela, I'd like to arrange institutional consulting.",
       m_serv:"Service", m_fecha:"Preferred date", m_hora:"Preferred time", m_hora_local:"in my time zone", m_nombre:"Name", m_motivo:"Reason for the consultation",
-      m_org:"Institution", m_tipoorg:"Type of organization", m_nec:"Need", m_contacto:"Contact", m_tz:"My time zone",
+      m_org:"Institution", m_tipoorg:"Type of organization", m_nec:"Need", m_contacto:"Contact", m_correo:"Email", m_cel:"Mobile", m_cargo:"Job title", m_empresa:"Company", m_tz:"My time zone",
       m_cierre_docente:"I look forward to your reply to agree on scope, price and payment (Yape or bank transfer).",
       m_cierre_instit:"I look forward to your reply to agree on scope, duration, quote and payment terms.",
       flexm:"Any time"
     }
   };
-  /* Servicios: en español se envía siempre el nombre en español a WhatsApp */
   const L = () => (typeof idioma !== "undefined" && idioma === "en") ? "en" : "es";
   const T = k => (RS[L()][k] !== undefined ? RS[L()][k] : RS.es[k]);
   const LOC = () => L() === "en" ? "en-US" : "es-PE";
 
-  /* ─── Fechas (todo se calcula en hora de Lima) ─── */
+  /* ─── Fechas (las asesorías se piden en hora de Lima) ─── */
   const TZL = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || TZ; } catch(e){ return TZ; } })();
   const fISO = new Intl.DateTimeFormat("en-CA", {timeZone:TZ, year:"numeric", month:"2-digit", day:"2-digit"});
   const pad = n => String(n).padStart(2, "0");
   const ymd = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
-  const hoyLima = () => fISO.format(new Date());
   const partes = s => s.split("-").map(Number);
   const sumarDias = (s, n) => { const [y,m,d] = partes(s); const t = new Date(Date.UTC(y, m-1, d+n)); return ymd(t.getUTCFullYear(), t.getUTCMonth()+1, t.getUTCDate()); };
   const limaInstante = (fecha, hhmm) => { const [y,m,d] = partes(fecha); const [h,mi] = hhmm.split(":").map(Number); return new Date(Date.UTC(y, m-1, d, h+5, mi)); };
-  const fHora = (inst, tz, extra) => new Intl.DateTimeFormat(LOC(), Object.assign({hour:"numeric", minute:"2-digit", timeZone:tz}, extra || {})).format(inst);
+  const fHora = (inst, tz) => new Intl.DateTimeFormat(LOC(), {hour:"numeric", minute:"2-digit", timeZone:tz}).format(inst);
   const fDia = (inst, tz, o) => new Intl.DateTimeFormat(LOC(), Object.assign({timeZone:tz}, o)).format(inst);
   const fechaLarga = f => fDia(limaInstante(f, "12:00"), TZ, {weekday:"long", day:"numeric", month:"long", year:"numeric"});
   const horaLima = inst => fHora(inst, TZ);
@@ -2351,16 +2354,15 @@ reiniciarBot();
   const ciudadLocal = TZL.split("/").pop().replace(/_/g, " ");
 
   /* ─── Estado ─── */
-  const hoy = hoyLima();
+  const hoy = fISO.format(new Date());
   const [hy, hm] = partes(hoy);
-  const S = {tipo:"gratis", fecha:null, hora:null, y:hy, m:hm, cache:{}, carga:false, errDisp:false, maxFecha:sumarDias(hoy, 45), enviando:false};
+  const S = {tipo:"gratis", fecha:null, hora:null, y:hy, m:hm};
   const HORAS_PAGO = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
   const esPago = () => S.tipo !== "gratis";
-  const minFecha = () => esPago() ? sumarDias(hoy, 1) : hoy;
-  const maxFechaTipo = () => esPago() ? sumarDias(hoy, 120) : S.maxFecha;
+  const minFecha = () => sumarDias(hoy, 1);
+  const maxFecha = () => sumarDias(hoy, 120);
   const mesClave = (y, m) => `${y}-${pad(m)}`;
 
-  /* ─── Textos [data-r] ─── */
   function textos(){
     $$("[data-r]").forEach(el => { const v = T(el.dataset.r); if (typeof v === "string") el.textContent = v; });
     $$("[data-r-aria]").forEach(el => el.setAttribute("aria-label", T(el.dataset.rAria)));
@@ -2373,31 +2375,9 @@ reiniciarBot();
     $("#rsv-sem").innerHTML = T("dias").map(d => `<span>${d}</span>`).join("");
   }
 
-  /* ─── Disponibilidad real (solo reunión gratuita) ─── */
-  async function cargarMes(y, m){
-    const k = mesClave(y, m);
-    if (S.cache[k]) return;
-    const ini = ymd(y, m, 1) < hoy ? hoy : ymd(y, m, 1);
-    const fin = ymd(y, m, new Date(Date.UTC(y, m, 0)).getUTCDate());
-    S.carga = true; S.errDisp = false; pintar();
-    try {
-      const r = await fetch(`${API}/availability?from=${ini}&to=${fin}`, {headers:{Accept:"application/json"}});
-      if (!r.ok) throw new Error("http " + r.status);
-      const j = await r.json();
-      if (!j || typeof j.slots !== "object") throw new Error("formato");
-      S.cache[k] = j.slots;
-      if (j.maxDate) S.maxFecha = j.maxDate;
-    } catch(e){ S.errDisp = true; }
-    S.carga = false;
-    pintar();
-  }
-  const slotsDe = f => { const mes = S.cache[f.slice(0, 7)]; return (mes && mes[f]) || []; };
-  const hayEnMes = (y, m) => { const mes = S.cache[mesClave(y, m)]; return !!mes && Object.keys(mes).some(k => mes[k].length); };
-
   /* ─── Pintado ─── */
   function pintarCalendario(){
-    const min = minFecha(), max = maxFechaTipo();
-    const [y, m] = [S.y, S.m];
+    const min = minFecha(), max = maxFecha(), [y, m] = [S.y, S.m];
     const nm = new Intl.DateTimeFormat(LOC(), {month:"long", year:"numeric", timeZone:"UTC"}).format(new Date(Date.UTC(y, m-1, 15, 12)));
     $("#rsv-mes").textContent = nm.charAt(0).toUpperCase() + nm.slice(1);
     const off = (new Date(Date.UTC(y, m-1, 1)).getUTCDay() + 6) % 7;
@@ -2405,58 +2385,33 @@ reiniciarBot();
     let h = "";
     for (let i = 0; i < off; i++) h += '<span class="rsv-vacio"></span>';
     for (let d = 1; d <= n; d++){
-      const f = ymd(y, m, d);
-      const fuera = f < min || f > max;
-      const hay = !esPago() && slotsDe(f).length > 0;
-      const dis = fuera || (!esPago() && !hay);
-      h += `<button type="button" class="rsv-dia${f === hoy ? " hoy" : ""}${hay ? " hay" : ""}" data-f="${f}" aria-pressed="${S.fecha === f}" aria-label="${fechaLarga(f)}"${dis ? " disabled" : ""}>${d}</button>`;
+      const f = ymd(y, m, d), fuera = f < min || f > max;
+      h += `<button type="button" class="rsv-dia${f === hoy ? " hoy" : ""}" data-f="${f}" aria-pressed="${S.fecha === f}" aria-label="${fechaLarga(f)}"${fuera ? " disabled" : ""}>${d}</button>`;
     }
     $("#rsv-dias").innerHTML = h;
     $("#rsv-prev").disabled = mesClave(y, m) <= mesClave(...partes(min).slice(0, 2));
     $("#rsv-next").disabled = mesClave(y, m) >= mesClave(...partes(max).slice(0, 2));
   }
-
-  function chip(valor, etiqueta, sub, activo){
-    return `<button type="button" class="rsv-hora" data-v="${valor}" aria-pressed="${activo}">${etiqueta}${sub ? `<small>${sub}</small>` : ""}</button>`;
-  }
+  const chip = (valor, etiqueta, sub, activo) =>
+    `<button type="button" class="rsv-hora" data-v="${valor}" aria-pressed="${activo}">${etiqueta}${sub ? `<small>${sub}</small>` : ""}</button>`;
   function pintarHoras(){
     const w = $("#rsv-horas-wrap");
-    $("#rsv-hh").textContent = T(esPago() ? "h_docente" : "h_gratis");
-    $("#rsv-hint").textContent = T(esPago() ? "hint_docente" : "hint_gratis");
-    if (S.tipo === "instit"){ $("#rsv-hcol").hidden = true; return; }
-    $("#rsv-hcol").hidden = false;
-    if (!esPago()){
-      if (S.errDisp){
-        w.innerHTML = `<div class="rsv-estado">${T("err_disp")} <a href="${wa(waLibre())}" target="_blank" rel="noopener">${T("wa_alt")}</a></div>`; return;
-      }
-      if (S.carga){ w.innerHTML = '<div class="rsv-horas"><div class="rsv-skel"></div><div class="rsv-skel"></div><div class="rsv-skel"></div><div class="rsv-skel"></div></div>'; return; }
-      if (!S.fecha){
-        w.innerHTML = `<div class="rsv-estado">${hayEnMes(S.y, S.m) ? T("sin_fecha") : T("sin_mes")}</div>`; return;
-      }
-      const lista = slotsDe(S.fecha);
-      if (!lista.length){ w.innerHTML = `<div class="rsv-estado">${T("sin_dia")}</div>`; return; }
-      w.innerHTML = '<div class="rsv-horas">' + lista.map(iso => {
-        const d = new Date(iso); const loc = horaLocal(d);
-        return chip(iso, horaLima(d), loc ? `≈ ${loc}` : "", S.hora === iso);
-      }).join("") + "</div>";
-      return;
-    }
+    $("#rsv-hh").textContent = T("h_docente");
+    $("#rsv-hint").textContent = T("hint_docente");
+    $("#rsv-hcol").hidden = S.tipo !== "docente";
+    if (S.tipo !== "docente") return;
     if (!S.fecha){ w.innerHTML = `<div class="rsv-estado">${T("sin_fecha")}</div>`; return; }
     w.innerHTML = '<div class="rsv-horas">' + HORAS_PAGO.map(hh => {
-      const d = limaInstante(S.fecha, hh); const loc = horaLocal(d);
+      const d = limaInstante(S.fecha, hh), loc = horaLocal(d);
       return chip(hh, horaLima(d), loc ? `≈ ${loc}` : "", S.hora === hh);
     }).join("") + chip("flex", T("flex"), "", S.hora === "flex") + "</div>";
   }
-
-  function instanteElegido(){
-    if (!S.fecha || !S.hora || S.hora === "flex") return null;
-    return esPago() ? limaInstante(S.fecha, S.hora) : new Date(S.hora);
-  }
+  const instanteElegido = () => (!S.fecha || !S.hora || S.hora === "flex") ? null : limaInstante(S.fecha, S.hora);
   function textoHora(){
     if (S.hora === "flex") return T("flex");
     const d = instanteElegido(); if (!d) return "";
     const l = horaLocal(d);
-    return horaLima(d) + (l ? ` (${l} ${T("tu_hora")})` : "");
+    return horaLima(d) + (l ? ` (≈ ${l})` : "");
   }
   function pintarResumen(){
     const t = S.tipo, pago = esPago();
@@ -2466,20 +2421,22 @@ reiniciarBot();
     h += fila(T("r_dur"), T(pago ? "v_dur_pago" : "v_dur_gratis"));
     h += fila(T("r_mod"), T(pago ? "v_mod_pago" : "v_mod_gratis"));
     h += fila(T("r_precio"), T(pago ? "v_precio_pago" : "v_precio_gratis"));
-    h += S.fecha ? fila(T("r_fecha"), fechaLarga(S.fecha)) : fila(T("r_fecha"), T("pend"), true);
-    if (t !== "instit") h += S.hora ? fila(T("r_hora"), textoHora()) : fila(T("r_hora"), T("pend"), true);
+    if (pago){
+      h += S.fecha ? fila(T("r_fecha"), fechaLarga(S.fecha)) : fila(T("r_fecha"), T("pend"), true);
+      if (t === "docente") h += S.hora ? fila(T("r_hora"), textoHora()) : fila(T("r_hora"), T("pend"), true);
+    }
     $("#rsv-dl").innerHTML = h;
     $("#rsv-nota").textContent = T("nota_" + t);
     $("#rsv-priv").textContent = T(pago ? "priv_pago" : "priv_gratis");
     const b = $("#rsv-cta");
-    b.textContent = S.enviando ? T("cta_cargando") : T("cta_" + t);
+    b.textContent = T("cta_" + t);
     b.className = "btn " + (pago ? "btn--wa" : "btn--azul");
-    b.setAttribute("aria-busy", S.enviando ? "true" : "false");
   }
   function pintarTz(){
     let s = T("tz_lima");
     if (TZL !== TZ) s += " " + T("tz_tuya").replace("{z}", ciudadLocal);
     $("#rsv-tz").textContent = s;
+    $("#rsv-tz").hidden = !esPago();
   }
   function pintarCampos(){
     $$("#rsv-form [data-tipos]").forEach(c => {
@@ -2487,7 +2444,10 @@ reiniciarBot();
       c.hidden = !on;
       $$("input,select,textarea", c).forEach(i => i.disabled = !on);
     });
-    $("#rsv-motivo-l").textContent = T(S.tipo === "docente" ? "l_motivo_docente" : "l_motivo_gratis");
+    const g = S.tipo === "gratis";
+    $("#rsv-gcal").hidden = !g;          /* reunión gratuita: calendario de Google */
+    $("#rsv-fh").hidden = g;
+    $("#rsv-p3").hidden = g;             /* los datos se piden dentro del calendario de Google */
     $("#rsv-serv").hidden = S.tipo !== "docente";
     $("#rsv-fh").classList.toggle("rsv-fh--solo", S.tipo === "instit");
     $("#rsv-p2t").textContent = T("p2_" + S.tipo);
@@ -2498,48 +2458,29 @@ reiniciarBot();
       b.setAttribute("aria-checked", on); b.tabIndex = on ? 0 : -1;
     });
   }
-  function pintar(){
-    pintarTipos(); pintarCampos(); pintarCalendario(); pintarHoras(); pintarResumen(); pintarTz();
-  }
+  function pintar(){ pintarTipos(); pintarCampos(); pintarCalendario(); pintarHoras(); pintarResumen(); pintarTz(); }
 
-  /* ─── Acciones ─── */
-  function aviso(msg, tipo, html){
+  function aviso(msg, tipo){
     const a = $("#rsv-aviso");
     if (!msg){ a.hidden = true; return; }
     a.className = "rsv-aviso" + (tipo ? " " + tipo : "");
-    if (html) a.innerHTML = msg; else a.textContent = msg;
-    a.hidden = false;
+    a.textContent = msg; a.hidden = false;
   }
-  let iniciado = false;                    /* la disponibilidad se consulta solo cuando la sección se acerca a la pantalla */
-  function iniciar(){ if (iniciado) return; iniciado = true; if (!esPago()) cargarMes(S.y, S.m).then(saltarSiVacio); }
   function elegirTipo(t, enfocar){
     if (!["gratis","docente","instit"].includes(t)) t = "gratis";
     if (t !== S.tipo){
       S.tipo = t; S.fecha = null; S.hora = null; aviso("");
-      const min = minFecha(); const [y, m] = partes(min); S.y = y; S.m = m;
+      const [y, m] = partes(minFecha()); S.y = y; S.m = m;
     }
-    $("#rsv-app").classList.remove("hecho"); $("#rsv-ok").hidden = true;
     pintar();
-    if (!esPago() && iniciado) cargarMes(S.y, S.m).then(saltarSiVacio);
     if (enfocar) $(`.rsv-tipo[data-tipo="${t}"]`).focus();
-  }
-  async function saltarSiVacio(){
-    /* si el mes actual no tiene horarios, avanza (máx. 2 meses) para no dejar al usuario en una vista vacía */
-    for (let i = 0; i < 2 && !esPago() && !S.errDisp && S.cache[mesClave(S.y, S.m)] && !hayEnMes(S.y, S.m); i++){
-      const maxM = mesClave(...partes(S.maxFecha).slice(0, 2));
-      if (mesClave(S.y, S.m) >= maxM) break;
-      S.m++; if (S.m > 12){ S.m = 1; S.y++; }
-      await cargarMes(S.y, S.m);
-    }
-    pintar();
   }
   function mover(delta){
     S.m += delta; if (S.m > 12){ S.m = 1; S.y++; } if (S.m < 1){ S.m = 12; S.y--; }
     pintar();
-    if (!esPago()) cargarMes(S.y, S.m);
   }
 
-  /* ─── Validación ─── */
+  /* ─── Validación (solo asesorías de pago) ─── */
   function validar(){
     let primero = null;
     $$("#rsv-form .rsv-campo").forEach(c => {
@@ -2549,25 +2490,21 @@ reiniciarBot();
       const v = i.value.trim(); let msg = "";
       if (!v) msg = T("req");
       else if (i.hasAttribute("data-email") && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = T("mail");
+      else if (i.hasAttribute("data-tel") && !(/^\+?[\d\s().-]{7,20}$/.test(v) && v.replace(/\D/g, "").length >= 7)) msg = T("tel");
       if (msg){ c.classList.add("err"); e.textContent = msg; if (!primero) primero = i; }
     });
     if (primero){ aviso(T("falta_campos"), "error"); primero.focus(); return false; }
     if (!S.fecha){ aviso(T("falta_fecha"), "error"); return false; }
-    if (S.tipo !== "instit" && !S.hora){ aviso(T("falta_hora"), "error"); return false; }
+    if (S.tipo === "docente" && !S.hora){ aviso(T("falta_hora"), "error"); return false; }
     return true;
   }
   const val = id => ($("#" + id).value || "").trim();
 
   /* ─── WhatsApp (reutiliza WA y wa()) ─── */
-  function waLibre(){
-    return L() === "en" ? "Hi Angela, I tried to book a free meeting on your website and need help." : "Hola Angela, intenté reservar una reunión gratuita en tu web y necesito ayuda.";
-  }
   function mensajeWA(){
-    const t = S.tipo, e = x => T(x);
-    const es = L() === "es";
-    const serv = RS[L()].serv[$("#rsv-servicio").selectedIndex];
+    const t = S.tipo, e = x => T(x), es = L() === "es";
     const lin = [e(t === "docente" ? "m_hola_docente" : "m_hola_instit"), ""];
-    if (t === "docente") lin.push(`• ${e("m_serv")}: ${serv}`);
+    if (t === "docente") lin.push(`• ${e("m_serv")}: ${RS[L()].serv[$("#rsv-servicio").selectedIndex]}`);
     if (t === "instit"){
       lin.push(`• ${e("m_org")}: ${val("rsv-org")}`);
       lin.push(`• ${e("m_tipoorg")}: ${RS[L()].tipoorg[$("#rsv-tipoorg").selectedIndex]}`);
@@ -2575,64 +2512,38 @@ reiniciarBot();
     lin.push(`• ${e("m_fecha")}: ${fechaLarga(S.fecha)}`);
     if (t === "docente"){
       if (S.hora === "flex") lin.push(`• ${e("m_hora")}: ${e("flexm")}`);
-      else { const d = instanteElegido(); const l = horaLocal(d);
+      else { const d = instanteElegido(), l = horaLocal(d);
         lin.push(`• ${e("m_hora")}: ${horaLima(d)} (${es ? "hora de Lima" : "Lima time"})` + (l ? ` · ${l} ${e("m_hora_local")}` : "")); }
     }
-    lin.push(`• ${t === "instit" ? e("m_contacto") : e("m_nombre")}: ${val("rsv-nombre")}`);
+    const nom = (val("rsv-nombre") + " " + val("rsv-apellido")).trim();
+    lin.push(`• ${t === "instit" ? e("m_contacto") : e("m_nombre")}: ${nom}`);
+    lin.push(`• ${e("m_correo")}: ${val("rsv-email")}`);
+    lin.push(`• ${e("m_cel")}: ${val("rsv-cel")}`);
+    lin.push(`• ${e("m_cargo")}: ${val("rsv-cargo")}`);
+    if (t === "docente") lin.push(`• ${e("m_empresa")}: ${val("rsv-empresa")}`);
     lin.push(`• ${t === "instit" ? e("m_nec") : e("m_motivo")}: ${t === "instit" ? val("rsv-necesidad") : val("rsv-motivo")}`);
     if (TZL !== TZ) lin.push(`• ${e("m_tz")}: ${TZL}`);
     lin.push("", e(t === "docente" ? "m_cierre_docente" : "m_cierre_instit"));
     return lin.join("\n");
   }
-
-  async function enviar(){
-    if (S.enviando) return;
-    aviso("");
-    if (!validar()) return;
-    if (esPago()){
-      const url = wa(mensajeWA());
-      const a = document.createElement("a");        /* un enlace real evita bloqueos de ventanas emergentes */
-      a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
-      document.body.appendChild(a); a.click(); a.remove();
-      aviso(T("wa_abierto"));
-      return;
-    }
-    if (val("rsv-web")) return;                      /* trampa anti-spam: si se llenó, no se envía */
-    S.enviando = true; pintarResumen();
-    try {
-      const r = await fetch(`${API}/book`, {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({start:S.hora, name:val("rsv-nombre"), email:val("rsv-email"), reason:val("rsv-motivo"), lang:L(), tz:TZL, website:val("rsv-web")})
-      });
-      const j = await r.json().catch(() => ({}));
-      if (r.ok && j.ok){ confirmado(j); }
-      else if (r.status === 409){
-        aviso(T("err_ocupado"), "error"); S.hora = null; S.cache = {};
-        await cargarMes(S.y, S.m);
-      } else {
-        aviso(`${T("err_gen")} <a href="${wa(waLibre())}" target="_blank" rel="noopener">${T("wa_alt")}</a>`, "error", true);
-      }
-    } catch(e){
-      aviso(`${T("err_gen")} <a href="${wa(waLibre())}" target="_blank" rel="noopener">${T("wa_alt")}</a>`, "error", true);
-    }
-    S.enviando = false; pintarResumen();
+  function abrir(url){
+    const a = document.createElement("a");        /* un enlace real evita bloqueos de ventanas emergentes */
+    a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    document.body.appendChild(a); a.click(); a.remove();
   }
-  function confirmado(j){
-    const d = new Date(S.hora), email = val("rsv-email"), l = horaLocal(d);
-    $("#rsv-ok-cuando").textContent = `${fechaLarga(S.fecha)} · ${horaLima(d)} (Lima)` + (l ? ` · ${l} ${T("tu_hora")}` : "");
-    $("#rsv-ok-p").textContent = T(j.meetLink ? "ok_p" : "ok_p_meet").replace("{email}", email);
-    const m = $("#rsv-ok-meet");
-    if (j.meetLink && /^https:\/\/meet\.google\.com\//.test(j.meetLink)){ m.href = j.meetLink; m.hidden = false; } else m.hidden = true;
-    $("#rsv-app").classList.add("hecho"); $("#rsv-ok").hidden = false;
-    $("#rsv-form").reset(); S.fecha = null; S.hora = null; S.cache = {};
-    $("#rsv-ok").scrollIntoView({block:"center"});
+  function enviar(){
+    aviso("");
+    if (!esPago()){ abrir(GCAL_URL); return; }
+    if (!validar()) return;
+    abrir(wa(mensajeWA()));
+    aviso(T("wa_abierto"));
   }
 
   /* ─── Eventos ─── */
   $$(".rsv-tipo").forEach(b => {
     b.addEventListener("click", () => elegirTipo(b.dataset.tipo));
     b.addEventListener("keydown", e => {
-      const ks = ["ArrowDown","ArrowRight","ArrowUp","ArrowLeft"]; if (!ks.includes(e.key)) return;
+      if (!["ArrowDown","ArrowRight","ArrowUp","ArrowLeft"].includes(e.key)) return;
       e.preventDefault();
       const ord = ["gratis","docente","instit"], i = ord.indexOf(S.tipo);
       elegirTipo(ord[(i + (e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : 2)) % 3], true);
@@ -2652,11 +2563,9 @@ reiniciarBot();
   $("#rsv-cta").addEventListener("click", enviar);
   $("#rsv-form").addEventListener("submit", e => { e.preventDefault(); enviar(); });
   $("#rsv-form").addEventListener("input", e => { const c = e.target.closest(".rsv-campo"); if (c){ c.classList.remove("err"); const x = $(".rsv-err", c); if (x) x.textContent = ""; } });
-  $("#rsv-ok-volver").addEventListener("click", () => { elegirTipo("gratis"); root.scrollIntoView({block:"start"}); });
 
   /* Botones de la web que abren este sistema con el tipo ya elegido: data-reserva="gratis|docente|instit" */
   window.abrirReserva = function(tipo){
-    iniciado = true;
     elegirTipo(tipo);
     root.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth", block:"start"});
     try { history.replaceState(null, "", "#reservas"); } catch(e){}
@@ -2674,12 +2583,26 @@ reiniciarBot();
 
   textos();
   elegirTipo("gratis");
-  if ("IntersectionObserver" in window){
-    const ob = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)){ iniciar(); ob.disconnect(); } }, {rootMargin:"600px 0px"});
-    ob.observe(root);
-  } else iniciar();
 })();
 
+
+/* ─── Menú: resalta la sección que se está leyendo ─── */
+(function(){
+  const links = [...document.querySelectorAll("#menu a[href^='#']")];
+  const mapa = {reservas:"servicios"};            /* «Reservas» cuelga de Servicios en el menú */
+  const secs = links.map(a => ({a, el: document.getElementById(a.getAttribute("href").slice(1))})).filter(x => x.el);
+  function marcar(){
+    const y = 110; let activo = null;
+    secs.forEach(s => { if (s.el.getBoundingClientRect().top <= y) activo = s; });
+    const r = document.getElementById("reservas");
+    if (activo){ const b = activo.el.getBoundingClientRect(); if (b.bottom < y) activo = null; }
+    if (r){ const b = r.getBoundingClientRect(); if (b.top <= y && b.bottom > y) activo = secs.find(s => s.el.id === mapa.reservas) || activo; }
+    links.forEach(a => a.classList.toggle("activo", !!activo && a === activo.a));
+  }
+  addEventListener("scroll", marcar, {passive:true});
+  addEventListener("resize", marcar);
+  marcar();
+})();
 /* ─── Revelado al hacer scroll ─── */
 const io = new IntersectionObserver((entradas) => {
   entradas.forEach(e => {
