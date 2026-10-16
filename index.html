@@ -496,17 +496,17 @@ h3{font-size:20px;line-height:1.28}
   border-left:2px solid var(--laton);padding-left:16px;
 }
 
-/* ═══════════ RECURSOS ═══════════ */
-.recursos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.recurso{
+/* ═══════════ MÁS ALLÁ DEL AULA ═══════════ */
+.mas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mas-card{
   border:1px solid rgba(147,180,255,.22);border-radius:var(--r-l);padding:30px 26px;
-  background:rgba(255,255,255,.03);display:flex;flex-direction:column;transition:border-color .22s,background .22s,transform .22s;
+  background:rgba(255,255,255,.03);display:flex;flex-direction:column;
 }
-.recurso:hover{border-color:var(--cielo);background:rgba(147,180,255,.07);transform:translateY(-4px)}
-.recurso-fmt{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--laton);margin-bottom:16px}
-.recurso h4{font-size:18px;letter-spacing:-.025em;margin-bottom:10px}
-.recurso p{font-size:14.5px;line-height:1.55;flex:1;margin-bottom:18px}
-.recurso .puerta-ir{color:var(--cielo)}
+.mas-fmt{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--laton);margin-bottom:16px}
+.mas-card h4{font-size:18px;letter-spacing:-.025em;margin-bottom:10px;color:#fff}
+.mas-card p{font-size:14.5px;line-height:1.55}
+.mas-cta{margin-top:36px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.mas-cta span{font-size:14.5px;color:#AEBDE0}
 
 /* ═══════════ FAQ ═══════════ */
 .faq{max-width:840px;border-top:1px solid var(--linea)}
@@ -649,7 +649,7 @@ h3{font-size:20px;line-height:1.28}
 @media (max-width:1020px){
   .hero-grid{grid-template-columns:1fr;gap:44px}
   .hero-foto{max-width:400px}
-  .puertas,.catalogo,.inst-grid,.recursos,.formatos{grid-template-columns:1fr 1fr}
+  .puertas,.catalogo,.inst-grid,.mas-grid,.formatos{grid-template-columns:1fr 1fr}
   .agenda{grid-template-columns:1fr}
   .publicos{grid-template-columns:repeat(2,1fr)}
   .publico,.publico:nth-child(4),.publico:nth-child(5){grid-column:span 1}
@@ -679,7 +679,7 @@ h3{font-size:20px;line-height:1.28}
 }
 @media (max-width:720px){
   body{font-size:16px}
-  .puertas,.catalogo,.inst-grid,.publicos,.recursos,.extras,.porta,.formatos,.tira-items{grid-template-columns:1fr}
+  .puertas,.catalogo,.inst-grid,.publicos,.mas-grid,.extras,.porta,.formatos,.tira-items{grid-template-columns:1fr}
   .tira-alcance{white-space:normal}
   .proceso{grid-template-columns:1fr}
   .paso{border-right:none;border-bottom:1px solid var(--linea)}
@@ -915,7 +915,7 @@ h3{font-size:20px;line-height:1.28}
       <a href="#quien-soy">Quién soy</a>
       <a href="#que-hago">Qué hago</a>
       <a href="#agenda">Eventos</a>
-      <a href="#recursos">Recursos</a>
+      <a href="#mas-alla">Más allá del aula</a>
       <a href="desencanto.html">Escritura</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -1668,37 +1668,6 @@ h3{font-size:20px;line-height:1.28}
   </div>
 </section>
 
-<!-- ══════════════ RECURSOS ══════════════ -->
-<section class="seccion oscuro" id="recursos">
-  <div class="env">
-    <div class="cab rev">
-      <p class="rotulo">Recursos gratuitos</p>
-      <h2>Llévate algo <em>útil</em> hoy</h2>
-      <p class="entrada">Material que uso en mis propias capacitaciones. Sin formularios largos: me escribes, te lo mando.</p>
-    </div>
-    <div class="recursos">
-      <a class="recurso rev" href="https://wa.me/51953867652?text=Hola%20Angela%2C%20quiero%20el%20checklist%20de%20los%2010%20errores%20en%20s%C3%ADlabos" target="_blank" rel="noopener">
-        <span class="recurso-fmt">PDF · 2 páginas</span>
-        <h4>10 errores en sílabos que SUNEDU observa</h4>
-        <p>Checklist para revisar tu sílabo antes de entregarlo a tu coordinación.</p>
-        <span class="puerta-ir">Pedirlo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="recurso rev" href="https://wa.me/51953867652?text=Hola%20Angela%2C%20quiero%20la%20gu%C3%ADa%20de%20Taxonom%C3%ADa%20de%20Bloom" target="_blank" rel="noopener">
-        <span class="recurso-fmt">PDF · 2 páginas</span>
-        <h4>Guía rápida de Taxonomía de Bloom revisada</h4>
-        <p>Verbos por nivel cognitivo para redactar resultados de aprendizaje que sí se puedan evaluar.</p>
-        <span class="puerta-ir">Pedirla <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="recurso rev" href="https://wa.me/51953867652?text=Hola%20Angela%2C%20quiero%20la%20plantilla%20de%20r%C3%BAbrica" target="_blank" rel="noopener">
-        <span class="recurso-fmt">Word editable</span>
-        <h4>Plantilla de rúbrica analítica</h4>
-        <p>Estructura base con criterios, niveles de logro y puntajes en escala vigesimal.</p>
-        <span class="puerta-ir">Pedirla <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════════ FAQ ══════════════ -->
 <section class="seccion seccion--papel" id="faq">
   <div class="env">
@@ -1724,6 +1693,53 @@ h3{font-size:20px;line-height:1.28}
 </section>
 
 <!-- ══════════════ CONTACTO ══════════════ -->
+<!-- ══════════════ MÁS ALLÁ DEL AULA ══════════════ -->
+<section class="seccion oscuro" id="mas-alla">
+  <div class="env">
+    <div class="cab rev">
+      <p class="rotulo">Perfil multidisciplinario</p>
+      <h2>Más allá del <em>aula</em></h2>
+      <p class="entrada">Antes de formar docentes escribí noticias, produje televisión y armé campañas. Esa mezcla de comunicación, relaciones públicas, gestión de proyectos, emprendimiento e inteligencia artificial está en todo lo que hago.</p>
+    </div>
+    <div class="mas-grid">
+      <div class="mas-card rev">
+        <span class="mas-fmt">PRENSA Y RR.PP.</span>
+        <h4>Periodista y relacionista pública</h4>
+        <p>Notas, entrevistas, cobertura de eventos y relación con medios.</p>
+      </div>
+      <div class="mas-card rev">
+        <span class="mas-fmt">REDES Y MARKETING</span>
+        <h4>Gestión de redes y campañas</h4>
+        <p>Redes sociales y campañas con Meta y TikTok Ads.</p>
+      </div>
+      <div class="mas-card rev">
+        <span class="mas-fmt">ASISTENTES DE IA</span>
+        <h4>IA hecha a la medida</h4>
+        <p>AECITO, el asistente de SIQA y la plataforma siqa.lat.</p>
+      </div>
+      <div class="mas-card rev">
+        <span class="mas-fmt">EVENTOS Y COMUNIDADES</span>
+        <h4>Del escenario a la grabación</h4>
+        <p>Ponencias desde 2019 y cuatro canales de YouTube con mis eventos.</p>
+      </div>
+      <div class="mas-card rev">
+        <span class="mas-fmt">RESPONSABILIDAD SOCIAL</span>
+        <h4>Educación con impacto social</h4>
+        <p>Programas para emprendedores de bajos recursos en Acción Emprendedora.</p>
+      </div>
+      <div class="mas-card rev">
+        <span class="mas-fmt">DIRECCIÓN Y PRODUCCIÓN</span>
+        <h4>Videos institucionales</h4>
+        <p>Dirigí y produje para Minagri, Hospital Rebagliati, Sinatemss y Midis.</p>
+      </div>
+    </div>
+    <div class="mas-cta rev">
+      <a class="btn btn--azul" href="mas-alla-del-aula.html">Conocer mi perfil multidisciplinario <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span>Ruta 2015–2026, ponencias, redacciones, redes y producciones.</span>
+    </div>
+  </div>
+</section>
+
 <section class="seccion esc" id="escritura" aria-labelledby="esc-h2">
   <div class="env">
     <div class="esc-grid">
@@ -1934,6 +1950,8 @@ Object.assign(DIC, {"Capacitación docente · Diseño instruccional · Gestión 
 Object.assign(DIC, {"Capacitación docente": "Teacher training", "Formación": "Training", "Taller, ruta de formación y mentoría uno a uno para tu práctica docente.": "Workshop, training path and one-to-one mentoring for your teaching practice.", "Programas de formación docente a medida, con diagnóstico, seguimiento y evidencia.": "Tailored faculty training programs, with diagnosis, follow-up and evidence.", "Talleres presenciales y virtuales para claustros completos.": "In-person and online workshops for entire faculties.", "Diseño instruccional y curricular": "Instructional and curriculum design", "Núcleo": "Core", "Asesoría para alinear objetivos, actividades y evaluación de tu curso.": "Advising to align the objectives, activities and assessment of your course.", "Rediseño curricular, sílabos por competencias, matrices de diseño instruccional y estandarización de formatos.": "Curriculum redesign, competency-based syllabi, instructional design matrices and standardization of formats.", "Taller: alinear objetivos, actividades y evaluación sin que se rompa la cadena.": "Workshop: aligning objectives, activities and assessment without breaking the chain.", "Implementación de cursos virtuales": "Online course implementation", "Ejecución": "Execution", "Acompañamiento para montar y mejorar tu curso en el aula virtual.": "Support to build and improve your course in the virtual classroom.", "Implementación completa de cursos: guion, recursos, audiovisuales, montaje y control de calidad en el LMS.": "Full course implementation: script, resources, audiovisuals, LMS setup and quality control.", "Demostración en vivo: de la matriz a la unidad publicada.": "Live demonstration: from the matrix to the published unit.", "Gestión de programas y proyectos": "Program and project management", "Dirección": "Direction", "No aplica a encargos individuales": "Not applicable to individual engagements", "Dirección de programas y proyectos educativos de punta a punta, con enfoque PMI, cronograma e indicadores.": "End-to-end leadership of educational programs and projects, with a PMI approach, schedule and indicators.", "No aplica a eventos": "Not applicable to events", "Evaluación y calidad": "Assessment and quality", "Control": "Control", "Revisión de tus evaluaciones y rúbricas con criterio pedagógico.": "Review of your assessments and rubrics with pedagogical judgment.", "QA de contenidos y preparación de evidencia para SUNEDU y SINEACE.": "Content QA and evidence preparation for SUNEDU and SINEACE.", "Charla: los errores de sílabo que más se observan en licenciamiento.": "Talk: the syllabus mistakes most often flagged in licensing.", "IA aplicada a la educación": "AI applied to education", "IA Product Manager": "AI Product Manager", "Mentoría para usar IA en tu práctica docente con criterio y sin textos genéricos.": "Mentoring to use AI in your teaching with judgment and without generic text.", "Diagnóstico e implementación de IA en procesos académicos, con lineamientos de uso responsable y capacitación al equipo.": "Diagnosis and implementation of AI in academic processes, with responsible-use guidelines and team training.", "Conferencia: qué cambia y qué no cambia con la IA en educación superior.": "Keynote: what changes and what doesn't change with AI in higher education.", "Consultoría académica": "Academic consulting", "Estrategia": "Strategy", "Acompañamiento a facultades y direcciones académicas en su transformación digital.": "Support for faculties and academic offices in their digital transformation.", "Un colegio no forma a sus docentes como una universidad, y una empresa que produce cursos no necesita lo mismo que un instituto. Trabajo con los cinco, adaptando la capacitación, el diseño, la implementación y la gestión a la normativa y al nivel de detalle de cada uno.": "A school doesn't train its teachers the way a university does, and a company that produces courses doesn't need the same as an institute. I work with all five, adapting training, design, implementation and management to the regulations and level of detail of each.", "Capacitación docente, diseño de sílabos por módulo formativo e implementación de cursos listos para dictar.": "Teacher training, syllabus design by training module and implementation of courses ready to teach.", "Implementación de cursos": "Course implementation", "Capacitación docente, diseño curricular, implementación de cursos virtuales, gestión de programas y aseguramiento de la calidad con evidencia para licenciamiento y acreditación.": "Teacher training, curriculum design, online course implementation, program management and quality assurance with evidence for licensing and accreditation.", "Gestión y QA · SUNEDU y SINEACE": "Management and QA · SUNEDU and SINEACE", "Diseño, implementación y gestión de programas cortos, diplomados y talleres, de punta a punta: desde la malla hasta el curso en marcha. Incluye la capacitación del equipo que los va a dictar.": "Design, implementation and management of short programs, diplomas and workshops, end to end: from the curriculum map to the course up and running. Includes training for the team that will teach them.", "¿Qué servicios ofreces?": "What services do you offer?", "Cuatro líneas: capacitación docente (talleres, mentoría y programas de formación), diseño instruccional y curricular, implementación de cursos virtuales, y gestión de programas y proyectos educativos. Hay propuestas para docentes y para instituciones.": "Four lines: teacher training (workshops, mentoring and training programs), instructional and curriculum design, online course implementation, and management of educational programs and projects. There are proposals for teachers and for institutions.", "¿Cómo se organiza una capacitación?": "How is a training program organized?", "Primero hacemos un diagnóstico breve de necesidades, nivel del grupo y objetivos. Luego te envío una propuesta con duración, modalidad (virtual o presencial), contenidos y entregables. Después de la capacitación hay un espacio de seguimiento para resolver dudas.": "First we do a short diagnosis of needs, group level and goals. Then I send you a proposal with duration, format (online or in person), contents and deliverables. After the training there is a follow-up space to resolve questions.", "¿Qué incluye la implementación de un curso virtual?": "What does implementing an online course include?", "Va del guion instruccional al curso listo para dictar: matriz de diseño instruccional por unidad, guías de contenido, presentaciones y guiones audiovisuales, recursos interactivos y evaluaciones, y montaje con control de calidad en el LMS.": "It goes from the instructional script to a course ready to teach: instructional design matrix by unit, content guides, slides and audiovisual scripts, interactive resources and assessments, and LMS setup with quality control.", "¿Cómo gestionas un programa educativo?": "How do you manage an educational program?", "Dirijo el programa de punta a punta, con enfoque PMI: planificación y estructura de trabajo, coordinación de docentes, diseño y tecnología, tableros de avance e indicadores, y un cierre documentado con transferencia al equipo.": "I lead the program end to end, with a PMI approach: planning and work structure, coordination of faculty, design and technology, progress dashboards and indicators, and a documented closing with handover to the team.", "¿Cuánto dura un programa?": "How long does a program last?", "Depende del alcance. Un taller dura de 2 a 4 horas; una ruta de formación, desde 12 horas; y los programas institucionales pueden ir de 8 a 40 horas o más, organizados por etapas. Lo definimos contigo según tus objetivos y tu calendario.": "It depends on the scope. A workshop lasts 2 to 4 hours; a training path, from 12 hours; and institutional programs can run from 8 to 40 hours or more, organized in stages. We define it with you according to your goals and your calendar.", "¿Cómo pido una cotización?": "How do I ask for a quote?", "Escríbeme por WhatsApp (docentes) o a angelafarfane@gmail.com (instituciones) con lo que necesitas, el número de participantes y las fechas. Te envío una propuesta por escrito con alcance, duración y cronograma. Para proyectos más grandes primero agendamos una llamada para entender el contexto.": "Write to me on WhatsApp (teachers) or at angelafarfane@gmail.com (institutions) with what you need, the number of participants and your dates. I'll send a written proposal with scope, duration and schedule. For larger projects we first schedule a call to understand the context.", "¿Cómo se paga?": "How does payment work?", "Las condiciones y los plazos de pago quedan por escrito en la propuesta. En Perú se paga por Yape o transferencia; desde el exterior, por transferencia internacional o PayPal.": "Payment terms and deadlines are set in writing in the proposal. In Peru you pay by Yape or bank transfer; from abroad, by international transfer or PayPal.", "¿Atiendes fuera de Lima?": "Do you work outside Lima?", "Todo el proceso puede hacerse a distancia, así que trabajo con docentes e instituciones de cualquier región del Perú. Para talleres presenciales, coordinamos viáticos según la ciudad.": "The whole process can be done remotely, so I work with teachers and institutions from any region of Peru. For in-person workshops, we agree on travel expenses depending on the city.", "¿Trabajas con instituciones fuera del Perú?": "Do you work with institutions outside Peru?", "Sí. Trabajo en remoto con docentes, universidades y empresas educativas de otros países, y adapto el trabajo a la normativa y a los formatos de cada sistema educativo. Cotizo y cobro en dólares, por transferencia internacional o PayPal, y coordinamos las sesiones según tu zona horaria.": "Yes. I work remotely with teachers, universities and education companies in other countries, and adapt the work to the regulations and formats of each education system. I quote and charge in US dollars, by international transfer or PayPal, and we schedule sessions around your time zone.", "¿Usas inteligencia artificial?": "Do you use artificial intelligence?", "Uso IA como herramienta y la enseño con criterio pedagógico; además, construyo herramientas de IA para universidades. En capacitación y diseño, la estructura pedagógica, la coherencia con las competencias y la exactitud del contenido siempre pasan por revisión instruccional.": "I use AI as a tool and teach it with pedagogical judgment; I also build AI tools for universities. In training and design, the pedagogical structure, the coherence with competencies and the accuracy of the content always go through instructional review.", "¿Qué diferencia hay entre tus servicios y SIQA?": "What is the difference between your services and SIQA?", "Mis servicios los hago yo: capacito, diseño, implemento y acompaño. SIQA es la plataforma de software que estoy desarrollando para que las instituciones puedan hacer parte de ese trabajo por su cuenta, con lineamientos y control de calidad. Una es servicio, la otra es producto; las dos salen del mismo lugar.": "I do my services myself: I train, design, implement and support. SIQA is the software platform I'm building so institutions can do part of that work on their own, with guidelines and quality control. One is a service, the other a product; both come from the same place."});
 
 Object.assign(DIC, {"Escritura": "Writing", "Mi otra faceta": "My other side", "También escribo": "I also write", "historias": "stories", "Hay historias que no se olvidan. Solo aprendemos a vivir con ellas.": "Some stories are never forgotten. We just learn to live with them.", "Además de formar docentes y gestionar proyectos educativos, escribo relatos y poesía. En": "Besides training teachers and managing educational projects, I write stories and poetry. In", "Desencanto": "Desencanto", "y en el poemario": "and in the poetry collection", "Poliamor": "Poliamor", "hay amor, desamor y autoaceptación, con historias donde quizá te reconozcas.": "there is love, heartbreak and self-acceptance, with stories where you may recognize yourself.", "Entrar a Desencanto": "Go to Desencanto", "Leer en Wattpad": "Read on Wattpad"});
+
+Object.assign(DIC, {"Más allá del aula": "Beyond the classroom", "Perfil multidisciplinario": "Multidisciplinary profile", "Más allá del": "Beyond the", "aula": "classroom", "Antes de formar docentes escribí noticias, produje televisión y armé campañas. Esa mezcla de comunicación, relaciones públicas, gestión de proyectos, emprendimiento e inteligencia artificial está en todo lo que hago.": "Before training teachers I wrote news, produced television and built campaigns. That mix of communication, public relations, project management, entrepreneurship and artificial intelligence is in everything I do.", "PRENSA Y RR.PP.": "PRESS & PR", "Periodista y relacionista pública": "Journalist and public relations specialist", "Notas, entrevistas, cobertura de eventos y relación con medios.": "News pieces, interviews, event coverage and media relations.", "REDES Y MARKETING": "SOCIAL MEDIA & MARKETING", "Gestión de redes y campañas": "Social media management and campaigns", "Redes sociales y campañas con Meta y TikTok Ads.": "Social media and campaigns with Meta and TikTok Ads.", "ASISTENTES DE IA": "AI ASSISTANTS", "IA hecha a la medida": "Tailor-made AI", "AECITO, el asistente de SIQA y la plataforma siqa.lat.": "AECITO, the SIQA assistant and the siqa.lat platform.", "EVENTOS Y COMUNIDADES": "EVENTS & COMMUNITIES", "Del escenario a la grabación": "From the stage to the recording", "Ponencias desde 2019 y cuatro canales de YouTube con mis eventos.": "Talks since 2019 and four YouTube channels with my events.", "RESPONSABILIDAD SOCIAL": "SOCIAL RESPONSIBILITY", "Educación con impacto social": "Education with social impact", "Programas para emprendedores de bajos recursos en Acción Emprendedora.": "Programs for low-income entrepreneurs at Acción Emprendedora.", "DIRECCIÓN Y PRODUCCIÓN": "DIRECTION & PRODUCTION", "Videos institucionales": "Institutional videos", "Dirigí y produje para Minagri, Hospital Rebagliati, Sinatemss y Midis.": "I directed and produced for Minagri, Hospital Rebagliati, Sinatemss and Midis.", "Conocer mi perfil multidisciplinario": "Explore my multidisciplinary profile", "Ruta 2015–2026, ponencias, redacciones, redes y producciones.": "2015–2026 timeline, talks, press writing, social media and productions."});
 
 function traducirPagina(){
   const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
